@@ -35,7 +35,15 @@ class HousePricesDatabase():
         self.discrete_parameters = discrete_parameters
         self.ordinal_parameters = ordinal_parameters
         self.nominal_parameters = nominal_parameters
+        if self.continuous_parameters+self.discrete_parameters+self.ordinal_parameters+self.nominal_parameters==[]:
+            raise NameError("No parameters selected")
+
         self.protocol = protocol
+        try:
+            assert len(self.protocol) == 3
+            assert np.sum(self.protocol) == 1
+        except:
+            raise NameError("The protocol chosen is not valid")
 
         pd.options.mode.chained_assignment = None
 
@@ -60,8 +68,10 @@ class HousePricesDatabase():
         test_set: tuple of 2 elements
             Similar to train_set but this time N_SAMPLES is the number of samples in the test set
         """
-
-        dataset = pd.read_csv(self.database_path)
+        try:
+            dataset = pd.read_csv(self.database_path)
+        except:
+            raise NameError("The path to the database doesn't exist")
 
         # Split the dataset into two parts: one containing continuous/discrete params and one containing categorical
         # params
