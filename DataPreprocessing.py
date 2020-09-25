@@ -4,6 +4,23 @@ from sklearn.preprocessing import OneHotEncoder
 class DataPreprocessing():
 
     def __init__(self, train_set, cv_set, test_set):
+        """
+        Attributes
+        --------------
+        train_set: tuple of 3 elements
+            1. 2D numpy.array of size N_SAMPLES x N_CONT_PARAMS where N_CONT_PARAMS is the number of discrete/continuous
+                parameters and N_SAMPLES is the number of samples used in the training set
+            2. 2D numpy.array of size N_SAMPLES x N_CAT_PARAMS where N_CAT_PARAMS is the number of nominal/ordinal
+                parameters and N_SAMPLES is the number of samples used in the training set
+            3. 1D numpy.array of size N_SAMPLES containing the target values used for training
+
+        cv_set: tuple of 3 elements
+            Similar to train_set but this time N_SAMPLES is the number of samples in the cv set
+
+        test_set: tuple of 3 elements
+            Similar to train_set but this time N_SAMPLES is the number of samples in the cv set
+        """
+
         self.categorical_train = train_set[1]
         self.categorical_cv = cv_set[1]
         self.categorical_test = test_set[1]
@@ -17,6 +34,27 @@ class DataPreprocessing():
         self.target_test = test_set[2]
 
     def __call__(self):
+        """
+        - Data normalization if discrete/continuous parameters + target
+        - One-hot-encoder if categorical parameters
+        - Merge discrete/continuous and categorical parameters
+
+        Returns
+        ----------------
+        X: tuple of 3 elements
+            There is one element for each train, cv and test set. Each element corresponds to a 2D numpy.array of size
+            N_SAMPLES x N_PARAMETERS where N_SAMPLES changes in function of the set but N_PARAMETERS is always the same
+            N_PARAMETERS = N_CONT_PARAMETERS + N_CAT_PARAMETERS (after one-hot-encoding)
+
+        y: tuple of 3 elements
+            Each element (1D numpy.array) corresponds to the target values for training, cv and testing set.
+
+        mean_sale_price: float
+            Mean value used to do the z-normalization of the target values
+
+        std_sale_price: float
+            Standard deviation value used to do the z-normalization of the target values
+        """
 
         # Data normalization -> continuous set only. The mean and std is computed on the training set only, to not have
         # effect of the testing set on the results
@@ -49,12 +87,4 @@ class DataPreprocessing():
         X_cv = np.concatenate((self.continuous_cv, self.categorical_cv), axis=1)
         X_test = np.concatenate((self.continuous_test, self.categorical_test), axis=1)
 
-        y_train = self.target_train
-        y_cv = self.target_cv
-        y_test = self.target_test
-
-        assert(len(y_train) == X_train.shape[0])
-        assert (len(y_cv) == X_cv.shape[0])
-        assert (len(y_test) == X_test.shape[0])
-
-        return (X_train, X_cv, X_test), (y_train, y_cv, y_test)
+        return (X_train, X_cv, X_test), (self.target_train, self.target_cv, self.target_test), mean_sale_price, std_sale_price
