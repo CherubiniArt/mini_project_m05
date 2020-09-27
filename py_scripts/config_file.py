@@ -33,7 +33,7 @@ discrete = ["Year Built", "Year Remod/Add", "Bsmt Full Bath", "Bsmt Half Bath", 
 
 # Defined by the users:
 # Path to the db used for the regression task
-db_path = "house-prices/house-prices.csv"
+db_path = "../house-prices/house-prices.csv"
 
 # Parameters used for the regression task
 """continuous_parameters = ["Gr Liv Area", "Garage Area", "Total Bsmt SF", "1st Flr SF", "Mas Vnr Area"]
