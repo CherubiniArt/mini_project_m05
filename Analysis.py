@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 class Analysis():
 
-    def __init__(self, y_pred_rf, target, mean_target, std_target):
+    def __init__(self, y_pred_rf, target, mean_target, std_target, flag):
         self.y_pred_rf_train =y_pred_rf[0]
         self.y_pred_rf_cv = y_pred_rf[1]
         self.y_pred_rf_test = y_pred_rf[2]
@@ -15,6 +15,8 @@ class Analysis():
 
         self.mean = mean_target
         self.std = std_target
+
+        self.flag = flag
 
     def __call__(self):
         # Compute r2:
@@ -28,5 +30,6 @@ class Analysis():
 
         plt.bar(["train", "cv", "test"], [r2_train, r2_cv, r2_test])
         plt.ylabel("r2")
-        plt.title("Performance of random forest")
+        title = " Random Forest" if self.flag=="RF" else " Decision Tree Regression"
+        plt.title("Performance of the" + title  + " algorithm")
         plt.show()
