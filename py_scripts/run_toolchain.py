@@ -7,7 +7,7 @@ from py_scripts.utils import regressor_test
 
 
 def run_toolchain(db_path, continuous_parameters, discrete_parameters, ordinal_parameters, nominal_parameters, protocol,
-                  n_trees, criterion, rf_seed, max_tree_depth_rf, max_tree_depth_dt):
+                  n_trees, criterion, rf_seed, max_tree_depth_rf, max_tree_depth_dt, save_fig):
 
     print("1. Load Database")
     house_price_db = HousePricesDatabase(db_path, continuous_parameters, discrete_parameters, ordinal_parameters,
@@ -41,5 +41,5 @@ def run_toolchain(db_path, continuous_parameters, discrete_parameters, ordinal_p
     y_pred_test = [rf_y_predict_test, dt_y_predict_test]
     algorithm = ["RF", "Decision Tree"]
 
-    score = Analysis(y_pred_train, y_pred_cv, y_pred_test, y, mean_sale_price, std_sale_price, algorithm)
+    score = Analysis(y_pred_train, y_pred_cv, y_pred_test, y, mean_sale_price, std_sale_price, algorithm, save_fig)
     score()

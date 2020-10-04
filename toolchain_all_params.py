@@ -32,5 +32,7 @@ rf_seed = 10  # Used to fix the random_state of RF and decision tree regressors 
 # Decision trees details:
 max_tree_depth_dt = 100
 
+save_fig = './results/all_params_results.png'
+
 run_toolchain(db_path, continuous_parameters, discrete_parameters, ordinal_parameters, nominal_parameters, protocol,
-              n_trees, criterion, rf_seed, max_tree_depth_rf, max_tree_depth_dt)
+              n_trees, criterion, rf_seed, max_tree_depth_rf, max_tree_depth_dt, save_fig)
