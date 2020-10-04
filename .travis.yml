@@ -11,7 +11,7 @@ install:
   - conda update -q conda
   - conda info -a
 
-  - conda create -q -n project python=$TRAVIS_PYTHON_VERSION numpy scipy nose coverage coveralls sphinx sphinx_rtd_theme
+  - conda create -q -n project python=$TRAVIS_PYTHON_VERSION numpy scipy nose coverage coveralls sphinx sphinx_rtd_theme pandas matplotlib scikit-learn
   - conda activate project
   
 script:
