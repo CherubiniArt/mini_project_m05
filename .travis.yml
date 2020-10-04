@@ -15,5 +15,5 @@ install:
   - conda activate project
   
 script:
-  - nosetests -sv --with-coverage --cover-package=. test.py
+  - nosetests -sv --with-coverage --cover-package=. ./py_scripts/test_toolchain.py
   - coveralls
