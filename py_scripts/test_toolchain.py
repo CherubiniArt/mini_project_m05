@@ -1,7 +1,7 @@
 from HousePricesDatabase import HousePricesDatabase
 from DataPreprocessing import DataPreprocessing
-from RFAlgorithm import RandomForestTraining, RandomForestTesting
-from Analysis import Analysis
+#from RFAlgorithm import RandomForestTraining
+#from Analysis import Analysis
 
 import nose.tools
 import numpy as np
@@ -75,7 +75,7 @@ def test_HousePricesDatabase():
 def test_DataPreprocessing():
     """Test the limit case of the class DataPreprocessing when all the parameters are given as input"""
 
-    db_path = "house-prices/house-prices.csv"
+    db_path = "../house-prices/house-prices.csv"
 
     # Nominal parameters:
     nominal = ["MS SubClass", "MS Zoning", "Street", "Alley", "Land Contour", "Lot Config", "Neighborhood",
