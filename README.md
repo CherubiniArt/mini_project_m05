@@ -1,3 +1,8 @@
+.. image:: https://travis-ci.org/CherubiniArt/mini_project_m05.svg?branch=master
+   :target: https://travis-ci.org/github/CherubiniArt/mini_project_m05
+.. image:: https://coveralls.io/repos/github/CherubiniArt/mini_project_m05/badge.svg?branch=master
+   :target: https://coveralls.io/github/CherubiniArt/mini_project_m05
+
 # INTELLIGENT ENGINE FOR HOUSES PRICES ESTIMATION
 ## For Academic purpose: Mini-project for the M05 module
 This solution is an extension of the project [Predicting house prices with machine learning](https://www.kimanalytics.com/single-post/2017/09/11/Predicting-House-Prices-with-Machine-Learning) of the data scientist Eric kim. 
