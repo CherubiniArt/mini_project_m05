@@ -5,7 +5,7 @@ import numpy as np
 
 class Analysis():
 
-    def __init__(self, y_pred_train, y_pred_cv, y_pred_test, target, mean_target, std_target, algorithm):
+    def __init__(self, y_pred_train, y_pred_cv, y_pred_test, target, mean_target, std_target, algorithm, save_fig):
         self.y_pred_train = y_pred_train
         self.y_pred_cv = y_pred_cv
         self.y_pred_test = y_pred_test
@@ -18,6 +18,8 @@ class Analysis():
         self.std = std_target
 
         self.algorithm = algorithm
+
+        self.save_fig = save_fig
 
     def autolabel(self, ax, rects):
         for rect in rects:
@@ -46,6 +48,7 @@ class Analysis():
         self.autolabel(ax, rects2)
         self.autolabel(ax, rects3)
 
+        plt.savefig(self.save_fig)
         plt.show()
 
     def __call__(self):
