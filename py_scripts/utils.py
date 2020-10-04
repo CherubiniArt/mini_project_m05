@@ -29,6 +29,7 @@ def regressor_training(regressor, x_train, x_cv, target_train, target_cv, criter
     return regressor, y_pred_train, y_pred_cv
 
 
+@nose.tools.nottest
 def regressor_test(model, x_test, target_test, criterion):
     y_pred_test = model.predict(x_test)
 
