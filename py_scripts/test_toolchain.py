@@ -3,7 +3,7 @@ from DataPreprocessing import DataPreprocessing
 #from RFAlgorithm import RandomForestTraining
 from Analysis import Analysis
 from run_toolchain import run_toolchain
-from utils import *
+import utils
 
 import nose.tools
 import numpy as np
