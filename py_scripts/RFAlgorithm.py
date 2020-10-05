@@ -1,6 +1,5 @@
 from sklearn.ensemble import RandomForestRegressor
 from py_scripts.utils import regressor_training
-import random
 
 
 class RandomForestTraining():

@@ -1,6 +1,5 @@
 from sklearn.tree import DecisionTreeRegressor
 from py_scripts.utils import regressor_training
-import random
 
 
 class DecisionTreeRegressionTraining():
