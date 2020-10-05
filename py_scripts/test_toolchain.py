@@ -1,7 +1,8 @@
 from HousePricesDatabase import HousePricesDatabase
 from DataPreprocessing import DataPreprocessing
 #from RFAlgorithm import RandomForestTraining
-#from Analysis import Analysis
+from Analysis import Analysis
+from run_toolchain import run_toolchain
 
 import nose.tools
 import numpy as np
@@ -138,6 +139,70 @@ def test_DataPreprocessing():
     np.testing.assert_array_almost_equal(std_sale_price, 83643.41726, decimal=5)
 
 
+def test_Analysis():
+    """Test a specific (easy) case of the class Analysis"""
+    y_pred_train = [np.array([1, 1]), np.array([0, 0])]
+    y_pred_cv = [np.array([1, 1]), np.array([0, 0])]
+    y_pred_test = [np.array([1, 1]), np.array([0, 0])]
+    target = (np.array([1, 1]), np.array([0, 0]), np.array([2, 2]))
+
+    mean_target = 0
+    std_target = 0
+    algorithm = ["RF", "Decision Tree"]
+    save_fig = None
+
+    results = Analysis(y_pred_train, y_pred_cv, y_pred_test, target, mean_target, std_target, algorithm, save_fig)
+
+    r2_train, r2_cv, r2_test = results()
+
+    nose.tools.eq_(r2_train, [1.0, 0.0])
+    nose.tools.eq_(r2_cv, [0.0, 1.0])
+    nose.tools.eq_(r2_test, [0.0, 0.0])
 
 
+def test_run_toolchain():
+    """Test the whole toolchain in the limit case when all the parameters are given as input"""
 
+    continuous_parameters = ["Lot Frontage", "Lot Area", "Mas Vnr Area", "BsmtFin SF 1", "BsmtFin SF 2", "Bsmt Unf SF",
+                             "Total Bsmt SF", "1st Flr SF", "2nd Flr SF", "Low Qual Fin SF", "Gr Liv Area",
+                             "Garage Area",
+                             "Wood Deck SF", "Open Porch SF", "Enclosed Porch", "3Ssn Porch", "Screen Porch",
+                             "Pool Area",
+                             "Misc Val"]
+    discrete_parameters = ["Year Built", "Year Remod/Add", "Bsmt Full Bath", "Bsmt Half Bath", "Full Bath", "Half Bath",
+                           "Bedroom AbvGr", "Kitchen AbvGr", "TotRms AbvGrd", "Fireplaces", "Garage Yr Blt",
+                           "Garage Cars",
+                           "Mo Sold", "Yr Sold"]
+    ordinal_parameters = ["Lot Shape", "Utilities", "Land Slope", "Overall Qual", "Overall Cond", "Exter Qual",
+                          "Exter Cond", "Bsmt Qual", "Bsmt Cond", "Bsmt Exposure", "BsmtFin Type 1", "BsmtFin Type 2",
+                          "Heating QC", "Electrical", "Kitchen Qual", "Functional", "Fireplace Qu", "Garage Finish",
+                          "Garage Qual", "Garage Cond", "Paved Drive", "Pool QC", "Fence"]
+    nominal_parameters = ["MS SubClass", "MS Zoning", "Street", "Alley", "Land Contour", "Lot Config", "Neighborhood",
+                          "Condition 1", "Condition 2", "Bldg Type", "House Style", "Roof Style", "Roof Matl",
+                          "Exterior 1st", "Exterior 2nd", "Mas Vnr Type", "Foundation", "Heating", "Central Air",
+                          "Garage Type", "Misc Feature", "Sale Type", "Sale Condition"]
+
+    # Path to the db used for the regression task
+    db_path = "./house-prices/house-prices.csv"
+
+    # Protocol used to split the dataset into train/cv/test
+    protocol = [0.8, 0.1, 0.1]
+
+    # RF details:
+    max_tree_depth_rf = 10
+    n_trees = 50
+    criterion = "mse"
+    rf_seed = 10  # Used to fix the random_state of RF and decision tree regressors to ensure reproducibility
+
+    # Decision trees details:
+    max_tree_depth_dt = 100
+
+    save_fig = None
+
+    r2_train, r2_cv, r2_test = run_toolchain(db_path, continuous_parameters, discrete_parameters, ordinal_parameters,
+                                             nominal_parameters, protocol, n_trees, criterion, rf_seed,
+                                             max_tree_depth_rf, max_tree_depth_dt, save_fig)
+
+    np.testing.assert_almost_equal(r2_train, [0.9777, 0.9824], decimal=4)
+    np.testing.assert_almost_equal(r2_cv, [0.8148, 0.8512], decimal=4)
+    np.testing.assert_almost_equal(r2_test, [0.8724, 0.7735], decimal=4)
