@@ -19,6 +19,4 @@ command:
 Here are the plotting of the results of the executions above:
 -------------------------------------------------------------
 .. image:: ../results/all_params_results.png
-Algorithms prediction power with all the params of the input
 .. image:: ../results/relevant_params_results.png
-Algorithms prediction power with only the relevant params 
