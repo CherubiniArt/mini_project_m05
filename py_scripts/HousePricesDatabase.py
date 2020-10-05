@@ -4,7 +4,10 @@ import random
 
 
 class HousePricesDatabase():
-    """Read the data from a csv file, clean the data (cf NaN value), split the dataset into training, cv and testing sets
+    """
+    - Read the data from a csv file
+    - Clean the data (cf NaN value)
+    - Split the dataset into training, cv and testing sets
 
 
     Parameters
@@ -13,36 +16,36 @@ class HousePricesDatabase():
         database_path: str
             complete path to the database file
 
-        continuous_parameters: list of str
+        continuous_parameters: :py:class:`list` of :py:class:`str`
             list containing the name of all the continuous parameters taken into account for this experiment
 
-        discrete_parameters: list of str
+        discrete_parameters: :py:class:`list` of :py:class:`str`
             list containing the name of all the discrete parameters taken into account for this experiment
 
-        ordinal_parameters: list of str
+        ordinal_parameters: :py:class:`list` of :py:class:`str`
             list containing the name of all the ordinal parameters taken into account for the experiment
 
-        nominal_parameters: list of str
+        nominal_parameters: :py:class:`list` of :py:class:`str`
             list containing the name of all the nominal parameters taken into account for the experiment
 
-        protocol: list of float
+        protocol: :py:class:`list` of :py:class:`float`
             a list of coefficients defining relative sizes of training, cv, and test sets
             Default: [0.6, 0.2, 0.2]
 
     Returns
     =======
-        train_set: tuple of 3 elements
-            1. 2D numpy.array of size N_SAMPLES x N_CONT_PARAMS where N_CONT_PARAMS is the number of
+        train_set: :py:class:`tuple` of 3 elements
+            - 2D numpy.array of size ``N_SAMPLES`` x ``N_CONT_PARAMS` where ``N_CONT_PARAMS`` is the number of
             discrete/continuous parameters and N_SAMPLES is the number of samples used in the training set
-            2. 2D numpy.array of size N_SAMPLES x N_CAT_PARAMS where N_CAT_PARAMS is the number of nominal/ordinal
-            parameters and N_SAMPLES is the number of samples used in the training set
-            3. 1D numpy.array of size N_SAMPLES containing the target values used for training
+            - 2D numpy.array of size ``N_SAMPLES`` x ``N_CAT_PARAMS`` where ``N_CAT_PARAMS`` is the number of
+            nominal/ordinal parameters and ``N_SAMPLES`` is the number of samples used in the training set
+            - 1D numpy.array of size ``N_SAMPLES`` containing the target values used for training
 
-        cv_set: tuple of 2 elements
-            Similar to train_set but this time N_SAMPLES is the number of samples in the cv set
+        cv_set: :py:class:`tuple` of 2 elements
+            Similar to train_set but this time ``N_SAMPLES`` is the number of samples in the cv set
 
-        test_set: tuple of 2 elements
-            Similar to train_set but this time N_SAMPLES is the number of samples in the test set
+        test_set: :py:class:`tuple` of 2 elements
+            Similar to train_set but this time ``N_SAMPLES`` is the number of samples in the test set
 
     """
 
