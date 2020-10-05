@@ -3,6 +3,7 @@ from DataPreprocessing import DataPreprocessing
 #from RFAlgorithm import RandomForestTraining
 from Analysis import Analysis
 from run_toolchain import run_toolchain
+from utils import *
 
 import nose.tools
 import numpy as np
@@ -206,3 +207,16 @@ def test_run_toolchain():
     np.testing.assert_almost_equal(r2_train, [0.9841, 0.9999], decimal=4)
     np.testing.assert_almost_equal(r2_cv, [0.8000, 0.8247], decimal=4)
     np.testing.assert_almost_equal(r2_test, [0.8747, 0.7649], decimal=4)
+
+def test_mse():
+    """Test the mse in the util file """
+    y_pred = np.array([2.0, 1.0])
+    y_target = np.array([1.2, 1.4])
+    np.testing.assert_almost_equal(utils.mse(y_pred, y_target), 0.4)
+
+def test_mae():
+    """Test the mae in the util file"""
+    y_pred = np.array([2.0, 1.0])
+    y_target = np.array([1.2, 1.4])
+    np.testing.assert_almost_equal(utils.mae(y_pred, y_target), 0.6)
+
