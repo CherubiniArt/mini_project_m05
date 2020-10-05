@@ -1,6 +1,7 @@
 import numpy as np
 import nose
 
+
 def mse(y_pred, y_target):
     return np.mean((y_pred - y_target) ** 2)
 
