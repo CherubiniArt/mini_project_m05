@@ -24,7 +24,6 @@ def run_toolchain(db_path, continuous_parameters, discrete_parameters, ordinal_p
     rf_regressor, rf_y_predict_train, rf_y_predict_cv = rf_train()
 
     print("-----> Decision Tree")
-    # Put here your code :)
     decision_train = DecisionTreeRegressionTraining(criterion, seed, max_tree_depth_dt, X, y)
     dt_regressor, dt_y_predict_train, dt_y_predict_cv = decision_train()
 
