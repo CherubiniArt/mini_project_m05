@@ -2,6 +2,9 @@
     :target: https://travis-ci.org/CherubiniArt/mini_project_m05
 .. image:: https://coveralls.io/repos/github/CherubiniArt/mini_project_m05/badge.svg
     :target: https://coveralls.io/github/CherubiniArt/mini_project_m05
+.. image:: https://img.shields.io/badge/docs-latest-blue.svg
+   :target: https://github.com/CherubiniArt/mini_project_m05/blob/master/sphinx/index.html
+https://idiap.github.io/mai-m05-ex5/index.html
 
 
 ===============================================
