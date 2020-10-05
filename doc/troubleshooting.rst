@@ -21,4 +21,4 @@ You can run unit tests we have prepared like this (install nose_ first):
 In case of problems, please get in touch with me `by e-mail
 <mailto:cherubini.art@gmail.com>`_.
 
-.. include:: links.rst
+.. include:: links.rst 
