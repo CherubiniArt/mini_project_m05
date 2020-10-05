@@ -4,6 +4,9 @@
     :target: https://coveralls.io/github/CherubiniArt/mini_project_m05
 .. image:: https://img.shields.io/badge/docs-latest-blue.svg
    :target: https://cherubiniart.github.io/mini_project_m05/
+.. image:: https://img.shields.io/badge/github-project-0000c0.svg
+   :target: https://github.com/CherubiniArt/mini_project_m05
+
 
 
 ===============================================
