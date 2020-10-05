@@ -5,6 +5,8 @@ from py_scripts.DecisionAlgorithm import DecisionTreeRegressionTraining
 from py_scripts.Analysis import Analysis
 from py_scripts.utils import regressor_test
 
+import numpy as np
+
 
 def run_toolchain(db_path, continuous_parameters, discrete_parameters, ordinal_parameters, nominal_parameters, protocol,
                   n_trees, criterion, rf_seed, max_tree_depth_rf, max_tree_depth_dt, save_fig):
@@ -42,4 +44,6 @@ def run_toolchain(db_path, continuous_parameters, discrete_parameters, ordinal_p
     algorithm = ["RF", "Decision Tree"]
 
     score = Analysis(y_pred_train, y_pred_cv, y_pred_test, y, mean_sale_price, std_sale_price, algorithm, save_fig)
-    score()
+    r2_train, r2_cv, r2_test = score()
+
+    return r2_train, r2_cv, r2_test

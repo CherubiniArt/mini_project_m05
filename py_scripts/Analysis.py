@@ -28,6 +28,7 @@ class Analysis():
                     ha='center', va='bottom')
 
     def plot_multiple_bars(self, scores_train, scores_cv, scores_test):
+        # Number of compared algorithms
         N = len(self.algorithm)
         ind = np.arange(N)  # the x locations for the groups
         width = 0.27  # the width of the bars
@@ -48,8 +49,9 @@ class Analysis():
         self.autolabel(ax, rects2)
         self.autolabel(ax, rects3)
 
-        plt.savefig(self.save_fig)
-        plt.show()
+        if self.save_fig is not None:
+            plt.savefig(self.save_fig)
+            plt.show()
 
     def __call__(self):
         r2_train = []
@@ -67,3 +69,5 @@ class Analysis():
             print("r2 test =", r2_test[-1])
 
         self.plot_multiple_bars(r2_train, r2_cv, r2_test)
+
+        return r2_train, r2_cv, r2_test
