@@ -19,6 +19,16 @@ script:
   - nosetests -sv --with-coverage --cover-package=. ./py_scripts/test_toolchain.py
   - sphinx-build -b doctest doc sphinx
   # Build docs
-  - spinx-build doc sphinx
+  - sphinx-build doc sphinx
   - touch sphinx/.nojekyll
   - coveralls
+
+deploy:
+  - provider: pages:git
+    verbose: true
+    edge: true
+    token: $GITHUB_TOKEN
+    local_dir: ./sphinx/
+    on:
+        branch: master
+        condition: $TRAVIS_PYTHON_VERSION = 3.8
