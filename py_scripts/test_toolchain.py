@@ -203,6 +203,6 @@ def test_run_toolchain():
                                              nominal_parameters, protocol, n_trees, criterion, rf_seed,
                                              max_tree_depth_rf, max_tree_depth_dt, save_fig)
 
-    np.testing.assert_almost_equal(r2_train, [0.9777, 0.9824], decimal=4)
-    np.testing.assert_almost_equal(r2_cv, [0.8148, 0.8512], decimal=4)
-    np.testing.assert_almost_equal(r2_test, [0.8724, 0.7735], decimal=4)
+    np.testing.assert_almost_equal(r2_train, [0.9841, 0.9999], decimal=4)
+    np.testing.assert_almost_equal(r2_cv, [0.8000, 0.8247], decimal=4)
+    np.testing.assert_almost_equal(r2_test, [0.8747, 0.7649], decimal=4)
