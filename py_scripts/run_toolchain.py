@@ -5,11 +5,9 @@ from py_scripts.DecisionAlgorithm import DecisionTreeRegressionTraining
 from py_scripts.Analysis import Analysis
 from py_scripts.utils import regressor_test
 
-import numpy as np
-
 
 def run_toolchain(db_path, continuous_parameters, discrete_parameters, ordinal_parameters, nominal_parameters, protocol,
-                  n_trees, criterion, rf_seed, max_tree_depth_rf, max_tree_depth_dt, save_fig):
+                  n_trees, criterion, seed, max_tree_depth_rf, max_tree_depth_dt, save_fig):
 
     print("1. Load Database")
     house_price_db = HousePricesDatabase(db_path, continuous_parameters, discrete_parameters, ordinal_parameters,
@@ -22,12 +20,12 @@ def run_toolchain(db_path, continuous_parameters, discrete_parameters, ordinal_p
 
     print("3. Algorithm train")
     print("-----> RF")
-    rf_train = RandomForestTraining(n_trees, criterion, rf_seed, max_tree_depth_rf, X, y)
+    rf_train = RandomForestTraining(n_trees, criterion, seed, max_tree_depth_rf, X, y)
     rf_regressor, rf_y_predict_train, rf_y_predict_cv = rf_train()
 
     print("-----> Decision Tree")
     # Put here your code :)
-    decision_train = DecisionTreeRegressionTraining(criterion, rf_seed, max_tree_depth_dt, X, y)
+    decision_train = DecisionTreeRegressionTraining(criterion, seed, max_tree_depth_dt, X, y)
     dt_regressor, dt_y_predict_train, dt_y_predict_cv = decision_train()
 
     print("5. Algorithm testing")

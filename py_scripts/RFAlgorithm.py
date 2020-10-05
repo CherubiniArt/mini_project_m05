@@ -1,5 +1,6 @@
 from sklearn.ensemble import RandomForestRegressor
 from py_scripts.utils import regressor_training
+import random
 
 
 class RandomForestTraining():
@@ -19,5 +20,4 @@ class RandomForestTraining():
         regressor = RandomForestRegressor(n_estimators=self.n_trees, criterion=self.criterion,
                                           max_depth=self.max_tree_depth, random_state=self.rf_seed)
 
-        return regressor_training(regressor, self.x_train, self.x_cv, self.target_train, self.target_cv,
-                                    self.criterion)
+        return regressor_training(regressor, self.x_train, self.x_cv, self.target_train, self.target_cv, self.criterion)

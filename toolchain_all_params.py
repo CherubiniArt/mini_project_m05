@@ -27,12 +27,12 @@ protocol = [0.8, 0.1, 0.1]
 max_tree_depth_rf = 10
 n_trees = 50
 criterion = "mse"
-rf_seed = 10  # Used to fix the random_state of RF and decision tree regressors to ensure reproducibility
 
 # Decision trees details:
 max_tree_depth_dt = 100
 
 save_fig = './results/all_params_results.png'
+seed = 42  # Used to fix the random_state of RF and decision tree regressors to ensure reproducibility
 
 run_toolchain(db_path, continuous_parameters, discrete_parameters, ordinal_parameters, nominal_parameters, protocol,
-              n_trees, criterion, rf_seed, max_tree_depth_rf, max_tree_depth_dt, save_fig)
+              n_trees, criterion, seed, max_tree_depth_rf, max_tree_depth_dt, save_fig)
