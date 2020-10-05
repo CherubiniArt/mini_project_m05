@@ -90,7 +90,13 @@
 <li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Python API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#database">Database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#pre-processor">Pre-processor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#preprocessing">Preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#random-forest-algorithm">Random Forest Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#decision-tree-algorithm">Decision Tree Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-py_scripts.utils.regressor_training">Regressor Training</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-py_scripts.utils.regressor_test">Regressor Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#analysis">Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-py_scripts.run_toolchain.run_toolchain">Run Toolchain</a></li>
 </ul>
 </li>
 </ul>
@@ -164,30 +170,36 @@
 <dl class="py class">
 <dt id="py_scripts.HousePricesDatabase.HousePricesDatabase">
 <em class="property">class </em><code class="sig-prename descclassname">py_scripts.HousePricesDatabase.</code><code class="sig-name descname">HousePricesDatabase</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">database_path</span></em>, <em class="sig-param"><span class="n">continuous_parameters</span></em>, <em class="sig-param"><span class="n">discrete_parameters</span></em>, <em class="sig-param"><span class="n">ordinal_parameters</span></em>, <em class="sig-param"><span class="n">nominal_parameters</span></em>, <em class="sig-param"><span class="n">protocol</span><span class="o">=</span><span class="default_value">[0.6, 0.2, 0.2]</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/py_scripts/HousePricesDatabase.html#HousePricesDatabase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#py_scripts.HousePricesDatabase.HousePricesDatabase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read the data from a csv file, clean the data (cf NaN value), split the dataset into training, cv and testing sets</p>
+<dd><ul class="simple">
+<li><p>Read the data from a csv file</p></li>
+<li><p>Clean the data (cf NaN value)</p></li>
+<li><p>Split the dataset into training, cv and testing sets</p></li>
+</ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>database_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – complete path to the database file</p></li>
-<li><p><strong>continuous_parameters</strong> (<em>list of str</em>) – list containing the name of all the continuous parameters taken into account for this experiment</p></li>
-<li><p><strong>discrete_parameters</strong> (<em>list of str</em>) – list containing the name of all the discrete parameters taken into account for this experiment</p></li>
-<li><p><strong>ordinal_parameters</strong> (<em>list of str</em>) – list containing the name of all the ordinal parameters taken into account for the experiment</p></li>
-<li><p><strong>nominal_parameters</strong> (<em>list of str</em>) – list containing the name of all the nominal parameters taken into account for the experiment</p></li>
-<li><p><strong>protocol</strong> (<em>list of float</em>) – a list of coefficients defining relative sizes of training, cv, and test sets
+<li><p><strong>continuous_parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – list containing the name of all the continuous parameters taken into account for this experiment</p></li>
+<li><p><strong>discrete_parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – list containing the name of all the discrete parameters taken into account for this experiment</p></li>
+<li><p><strong>ordinal_parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – list containing the name of all the ordinal parameters taken into account for the experiment</p></li>
+<li><p><strong>nominal_parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – list containing the name of all the nominal parameters taken into account for the experiment</p></li>
+<li><p><strong>protocol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – a list of coefficients defining relative sizes of training, cv, and test sets
 Default: [0.6, 0.2, 0.2]</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul>
-<li><p><strong>train_set</strong> (<em>tuple of 3 elements</em>) –</p>
-<p>1. 2D numpy.array of size N_SAMPLES x N_CONT_PARAMS where N_CONT_PARAMS is the number of
-discrete/continuous parameters and N_SAMPLES is the number of samples used in the training set
-2. 2D numpy.array of size N_SAMPLES x N_CAT_PARAMS where N_CAT_PARAMS is the number of nominal/ordinal
-parameters and N_SAMPLES is the number of samples used in the training set
-3. 1D numpy.array of size N_SAMPLES containing the target values used for training</p>
+<li><p><strong>train_set</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of 3 elements) –</p>
+<ul class="simple">
+<li><p>2D numpy.array of size <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> x <code class="docutils literal notranslate"><span class="pre">N_CONT_PARAMS`</span> <span class="pre">where</span> <span class="pre">``N_CONT_PARAMS</span></code> is the number of</p></li>
+</ul>
+<p>discrete/continuous parameters and N_SAMPLES is the number of samples used in the training set
+- 2D numpy.array of size <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> x <code class="docutils literal notranslate"><span class="pre">N_CAT_PARAMS</span></code> where <code class="docutils literal notranslate"><span class="pre">N_CAT_PARAMS</span></code> is the number of
+nominal/ordinal parameters and <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> is the number of samples used in the training set
+- 1D numpy.array of size <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> containing the target values used for training</p>
 </li>
-<li><p><strong>cv_set</strong> (<em>tuple of 2 elements</em>) – Similar to train_set but this time N_SAMPLES is the number of samples in the cv set</p></li>
-<li><p><strong>test_set</strong> (<em>tuple of 2 elements</em>) – Similar to train_set but this time N_SAMPLES is the number of samples in the test set</p></li>
+<li><p><strong>cv_set</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of 2 elements) – Similar to train_set but this time <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> is the number of samples in the cv set</p></li>
+<li><p><strong>test_set</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of 2 elements) – Similar to train_set but this time <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> is the number of samples in the test set</p></li>
 </ul>
 </p>
 </dd>
@@ -195,8 +207,8 @@ parameters and N_SAMPLES is the number of samples used in the training set
 </dd></dl>
 
 </div>
-<div class="section" id="pre-processor">
-<h2>Pre-processor<a class="headerlink" href="#pre-processor" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="preprocessing">
+<h2>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="py_scripts.DataPreprocessing.DataPreprocessing">
 <em class="property">class </em><code class="sig-prename descclassname">py_scripts.DataPreprocessing.</code><code class="sig-name descname">DataPreprocessing</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">train_set</span></em>, <em class="sig-param"><span class="n">cv_set</span></em>, <em class="sig-param"><span class="n">test_set</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/py_scripts/DataPreprocessing.html#DataPreprocessing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#py_scripts.DataPreprocessing.DataPreprocessing" title="Permalink to this definition">¶</a></dt>
@@ -208,21 +220,24 @@ parameters and N_SAMPLES is the number of samples used in the training set
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>train_set</strong> (<em>tuple of 3 elements</em>) – 1. 2D numpy.array of size N_SAMPLES x N_CONT_PARAMS where N_CONT_PARAMS is the number of
-discrete/continuous parameters and N_SAMPLES is the number of samples used in the training set
-2. 2D numpy.array of size N_SAMPLES x N_CAT_PARAMS where N_CAT_PARAMS is the number of nominal/ordinal
-parameters and N_SAMPLES is the number of samples used in the training set
-3. 1D numpy.array of size N_SAMPLES containing the target values used for training</p></li>
-<li><p><strong>cv_set</strong> (<em>tuple of 3 elements</em>) – Similar to train_set but this time N_SAMPLES is the number of samples in the cv set</p></li>
-<li><p><strong>test_set</strong> (<em>tuple of 3 elements</em>) – Similar to train_set but this time N_SAMPLES is the number of samples in the cv set</p></li>
+<li><p><strong>train_set</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of 3 elements) – <ul>
+<li><p>2D numpy.array of size <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> x <code class="docutils literal notranslate"><span class="pre">N_CONT_PARAMS</span></code> where <code class="docutils literal notranslate"><span class="pre">N_CONT_PARAMS</span></code> is the number of</p></li>
+</ul>
+<p>discrete/continuous parameters and <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> is the number of samples used in the training set
+- 2D numpy.array of size <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> x <code class="docutils literal notranslate"><span class="pre">N_CAT_PARAMS</span></code> where <code class="docutils literal notranslate"><span class="pre">N_CAT_PARAMS</span></code> is the number of
+nominal/ordinal parameters and <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> is the number of samples used in the training set
+- 1D numpy.array of size <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> containing the target values used for training</p>
+</p></li>
+<li><p><strong>cv_set</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of 3 elements) – Similar to train_set but this time N_SAMPLES is the number of samples in the cv set</p></li>
+<li><p><strong>test_set</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of 3 elements) – Similar to train_set but this time N_SAMPLES is the number of samples in the cv set</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
-<li><p><strong>X</strong> (<em>tuple of 3 elements</em>) – There is one element for each train, cv and test set. Each element corresponds to a 2D numpy.array of
+<li><p><strong>X</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of 3 elements) – There is one element for each train, cv and test set. Each element corresponds to a 2D numpy.array of
 size N_SAMPLES x N_PARAMETERS where N_SAMPLES changes in function of the set but N_PARAMETERS is always
 the same N_PARAMETERS = N_CONT_PARAMETERS + N_CAT_PARAMETERS (after one-hot-encoding)</p></li>
-<li><p><strong>y</strong> (<em>tuple of 3 elements</em>) – Each element (1D numpy.array) corresponds to the target values for training, cv and testing set.</p></li>
+<li><p><strong>y</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of 3 elements) – Each element (1D numpy.array) corresponds to the target values for training, cv and testing set.</p></li>
 <li><p><strong>mean_sale_price</strong> (<em>float</em>) – Mean value used to do the z-normalization of the target values</p></li>
 <li><p><strong>std_sale_price</strong> (<em>float</em>) – Standard deviation value used to do the z-normalization of the target values</p></li>
 </ul>
@@ -231,6 +246,296 @@ the same N_PARAMETERS = N_CONT_PARAMETERS + N_CAT_PARAMETERS (after one-hot-enco
 </dl>
 </dd></dl>
 
+</div>
+<div class="section" id="random-forest-algorithm">
+<h2>Random Forest Algorithm<a class="headerlink" href="#random-forest-algorithm" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="py_scripts.RFAlgorithm.RandomForestTraining">
+<em class="property">class </em><code class="sig-prename descclassname">py_scripts.RFAlgorithm.</code><code class="sig-name descname">RandomForestTraining</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_trees</span></em>, <em class="sig-param"><span class="n">criterion</span></em>, <em class="sig-param"><span class="n">max_tree_depth</span></em>, <em class="sig-param"><span class="n">rf_seed</span></em>, <em class="sig-param"><span class="n">input</span></em>, <em class="sig-param"><span class="n">target</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/py_scripts/RFAlgorithm.html#RandomForestTraining"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#py_scripts.RFAlgorithm.RandomForestTraining" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li><p>Initialize the Random Forest algorithm</p></li>
+<li><p>Fit the Random Forest regressor</p></li>
+<li><p>Predict the performance of the algorithm on the training and cv set</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_trees</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – The number of tree in the forest</p></li>
+<li><p><strong>criterion</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The function to measure the quality of a split.</p></li>
+<li><p><strong>max_tree_depth</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – The maximum depth of the tree. If None, then nodes are expanded until all leaves are pure or until all
+leaves contain less than min_samples_split samples.</p></li>
+<li><p><strong>seed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Use to initialize the random_state of DecisionTreeRegressor which controls the randomness of the estimator.
+Important to ensure reproducibility</p></li>
+<li><p><strong>input</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of 3 elements) – There is one element for each train, cv and test set. Each element corresponds to a 2D numpy.array of
+size <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> x <code class="docutils literal notranslate"><span class="pre">N_PARAMETERS</span></code> where <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> changes in function of the set but
+<code class="docutils literal notranslate"><span class="pre">N_PARAMETERS</span></code> is always the same <code class="docutils literal notranslate"><span class="pre">N_PARAMETERS</span></code> = <code class="docutils literal notranslate"><span class="pre">N_CONT_PARAMETERS</span></code> + <code class="docutils literal notranslate"><span class="pre">N_CAT_PARAMETERS</span></code>
+(after one-hot-encoding)</p></li>
+<li><p><strong>target</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of 3 elements) – Each element (1D numpy.array) corresponds to the target values for training, cv and testing set.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>regressor</strong> (<em>self: RandomForestRegressor</em>) – Fitted estimator</p></li>
+<li><p><strong>y_pred_train</strong> (<em>numpy.array</em>) – Array containing the predicted value for each input samples of the training set</p></li>
+<li><p><strong>y_pred_cv</strong> (<em>numpy.array</em>) – Array containing the predicted value for each input samples of the cv set</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="decision-tree-algorithm">
+<h2>Decision Tree Algorithm<a class="headerlink" href="#decision-tree-algorithm" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="py_scripts.DecisionAlgorithm.DecisionTreeRegressionTraining">
+<em class="property">class </em><code class="sig-prename descclassname">py_scripts.DecisionAlgorithm.</code><code class="sig-name descname">DecisionTreeRegressionTraining</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">criterion</span></em>, <em class="sig-param"><span class="n">max_tree_depth</span></em>, <em class="sig-param"><span class="n">seed</span></em>, <em class="sig-param"><span class="n">input</span></em>, <em class="sig-param"><span class="n">target</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/py_scripts/DecisionAlgorithm.html#DecisionTreeRegressionTraining"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#py_scripts.DecisionAlgorithm.DecisionTreeRegressionTraining" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li><p>Initialize the Decision Tree algorithm</p></li>
+<li><p>Fit the Decision Tree regressor</p></li>
+<li><p>Predict the performance of the algorithm on the training and cv set</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>criterion</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The function to measure the quality of a split.</p></li>
+<li><p><strong>max_tree_depth</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – The maximum depth of the tree. If None, then nodes are expanded until all leaves are pure or until all
+leaves contain less than min_samples_split samples.</p></li>
+<li><p><strong>seed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Use to initialize the random_state of DecisionTreeRegressor which controls the randomness of the estimator.
+Important to ensure reproducibility</p></li>
+<li><p><strong>input</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of 3 elements) – There is one element for each train, cv and test set. Each element corresponds to a 2D numpy.array of
+size <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> x <code class="docutils literal notranslate"><span class="pre">N_PARAMETERS</span></code> where <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> changes in function of the set but
+<code class="docutils literal notranslate"><span class="pre">N_PARAMETERS</span></code> is always the same <code class="docutils literal notranslate"><span class="pre">N_PARAMETERS</span></code> = <code class="docutils literal notranslate"><span class="pre">N_CONT_PARAMETERS</span></code> + <code class="docutils literal notranslate"><span class="pre">N_CAT_PARAMETERS</span></code>
+(after one-hot-encoding)</p></li>
+<li><p><strong>target</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of 3 elements) – Each element (1D numpy.array) corresponds to the target values for training, cv and testing set.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>regressor</strong> (<em>self: DecisionTreeRegressor</em>) – Fitted estimator</p></li>
+<li><p><strong>y_pred_train</strong> (<em>numpy.array</em>) – Array containing the predicted value for each input samples of the training set</p></li>
+<li><p><strong>y_pred_cv</strong> (<em>numpy.array</em>) – Array containing the predicted value for each input samples of the cv set</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-py_scripts.utils.regressor_training">
+<span id="regressor-training"></span><h2>Regressor Training<a class="headerlink" href="#module-py_scripts.utils.regressor_training" title="Permalink to this headline">¶</a></h2>
+<p>Function used to fit/train a specific regressor and compute its performance on the training and cv set</p>
+<dl class="field-list simple">
+<dt class="field-odd">param regressor</dt>
+<dd class="field-odd"><p>Initialized regressor</p>
+</dd>
+<dt class="field-even">type regressor</dt>
+<dd class="field-even"><p>RandomForestRegressor or DecisionTreeRegressor</p>
+</dd>
+<dt class="field-odd">param x_train</dt>
+<dd class="field-odd"><p>Array containing the samples used for the training of the regressor. The size is
+<code class="docutils literal notranslate"><span class="pre">N_SAMPLES_TRAIN</span></code> x <code class="docutils literal notranslate"><span class="pre">N_PARAMETERS</span></code></p>
+</dd>
+<dt class="field-even">type x_train</dt>
+<dd class="field-even"><p>numpy.array</p>
+</dd>
+<dt class="field-odd">param x_cv</dt>
+<dd class="field-odd"><p>Array containing the samples used for the training of the regressor. The size is
+<code class="docutils literal notranslate"><span class="pre">N_SAMPLES_CV</span></code> x <code class="docutils literal notranslate"><span class="pre">N_PARAMETERS</span></code></p>
+</dd>
+<dt class="field-even">type x_cv</dt>
+<dd class="field-even"><p>numpy.array</p>
+</dd>
+<dt class="field-odd">param target_train</dt>
+<dd class="field-odd"><p>Each element of the array corresponds to the target values in the training set</p>
+</dd>
+<dt class="field-even">type target_train</dt>
+<dd class="field-even"><p>numpy.array</p>
+</dd>
+<dt class="field-odd">param target_cv</dt>
+<dd class="field-odd"><p>Each element of the array corresponds to the target values in the cv set</p>
+</dd>
+<dt class="field-even">type target_cv</dt>
+<dd class="field-even"><p>numpy.array</p>
+</dd>
+<dt class="field-odd">param criterion</dt>
+<dd class="field-odd"><p>The function to measure the quality of a split.</p>
+</dd>
+<dt class="field-even">type criterion</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">returns</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>regressor</strong> (<em>self.DecisionTreeRegressor or self.RandomForestRegressor</em>) – Fitted estimator</p></li>
+<li><p><strong>y_pred_train</strong> (<em>numpy.array</em>) – Array containing the predicted value for each input samples of the training set</p></li>
+<li><p><strong>y_pred_cv</strong> (<em>numpy.array</em>) – Array containing the predicted value for each input samples of the cv set</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="module-py_scripts.utils.regressor_test">
+<span id="regressor-testing"></span><h2>Regressor Testing<a class="headerlink" href="#module-py_scripts.utils.regressor_test" title="Permalink to this headline">¶</a></h2>
+<p>Function used to predict the performance on the testing set of a specific regressor</p>
+<dl class="field-list simple">
+<dt class="field-odd">param model</dt>
+<dd class="field-odd"><p>Fitted regressor</p>
+</dd>
+<dt class="field-even">type model</dt>
+<dd class="field-even"><p>RandomForestRegressor or DecisionTreeRegressor</p>
+</dd>
+<dt class="field-odd">param x_test</dt>
+<dd class="field-odd"><p>Array containing the samples used for the testing of the regressor. The size is
+<code class="docutils literal notranslate"><span class="pre">N_SAMPLES_TEST</span></code> x <code class="docutils literal notranslate"><span class="pre">N_PARAMETERS</span></code></p>
+</dd>
+<dt class="field-even">type x_test</dt>
+<dd class="field-even"><p>numpy.array</p>
+</dd>
+<dt class="field-odd">param target_test</dt>
+<dd class="field-odd"><p>Each element of the array corresponds to the target values in the testing set</p>
+</dd>
+<dt class="field-even">type target_test</dt>
+<dd class="field-even"><p>numpy.array</p>
+</dd>
+<dt class="field-odd">param criterion</dt>
+<dd class="field-odd"><p>The function to measure the quality of a split.</p>
+</dd>
+<dt class="field-even">type criterion</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">returns</dt>
+<dd class="field-odd"><p><strong>y_pred_test</strong> – Array containing the predicted value for each input samples of the test set computed with model</p>
+</dd>
+<dt class="field-even">rtype</dt>
+<dd class="field-even"><p>numpy.array</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="analysis">
+<h2>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="py_scripts.Analysis.Analysis">
+<em class="property">class </em><code class="sig-prename descclassname">py_scripts.Analysis.</code><code class="sig-name descname">Analysis</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y_pred_train</span></em>, <em class="sig-param"><span class="n">y_pred_cv</span></em>, <em class="sig-param"><span class="n">y_pred_test</span></em>, <em class="sig-param"><span class="n">target</span></em>, <em class="sig-param"><span class="n">mean_target</span></em>, <em class="sig-param"><span class="n">std_target</span></em>, <em class="sig-param"><span class="n">algorithm</span></em>, <em class="sig-param"><span class="n">save_fig</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/py_scripts/Analysis.html#Analysis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#py_scripts.Analysis.Analysis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to compute and plot the performance of the experiment</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y_pred_train</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – The first element of the list is an array containing the predicted values for each input samples of the
+training set computed with the RandomForestRegressor, while the second element is the predicted values
+computed with DecisionTreeRegressor.</p></li>
+<li><p><strong>y_pred_cv</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – The first element of the list is an array containing the predicted values for each input samples of the
+cv set computed with the RandomForestRegressor, while the second element is the predicted values
+computed with DecisionTreeRegressor.</p></li>
+<li><p><strong>y_pred_test</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – The first element of the list is an array containing the predicted values for each input samples of the
+testing set computed with the RandomForestRegressor, while the second element is the predicted values
+computed with DecisionTreeRegressor.</p></li>
+<li><p><strong>target</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of 3 elements) – Each element (1D numpy.array) corresponds to the target values for training, cv and testing set.</p></li>
+<li><p><strong>mean_target</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Mean value used to do the z-normalization of the target values</p></li>
+<li><p><strong>std_target</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Standard deviation value used to do the z-normalization of the target values</p></li>
+<li><p><strong>algorithm</strong> (<em>[</em><em>&quot;RF&quot;</em><em>, </em><em>&quot;Decision Tree&quot;</em><em>]</em>) – Contains the name of the algorithms tested in the experiments.</p></li>
+<li><p><strong>save_fig</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Indicate the path where to save the figure with the results</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>r2_train</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Contains the R2 score computed on the training set for both Decison Tree and Random Forest algorithm</p></li>
+<li><p><strong>r2_cv</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Contains the R2 score computed on the cv set for both Decison Tree and Random Forest algorithm</p></li>
+<li><p><strong>r2_test</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Contains the R2 score computed on the test set for both Decison Tree and Random Forest algorithm</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-py_scripts.run_toolchain.run_toolchain">
+<span id="run-toolchain"></span><h2>Run Toolchain<a class="headerlink" href="#module-py_scripts.run_toolchain.run_toolchain" title="Permalink to this headline">¶</a></h2>
+<p>Function called in each user configuration file. It is the function which manage all the blocks and call them in a
+specific order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param db_path</dt>
+<dd class="field-odd"><p>Path to the database csv file</p>
+</dd>
+<dt class="field-even">type db_path</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">param continuous_parameters</dt>
+<dd class="field-odd"><p>list containing the name of all the continuous parameters taken into account for this experiment</p>
+</dd>
+<dt class="field-even">type continuous_parameters</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+<dt class="field-odd">param discrete_parameters</dt>
+<dd class="field-odd"><p>list containing the name of all the discrete parameters taken into account for this experiment</p>
+</dd>
+<dt class="field-even">type discrete_parameters</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+<dt class="field-odd">param ordinal_parameters</dt>
+<dd class="field-odd"><p>list containing the name of all the ordinal parameters taken into account for the experiment</p>
+</dd>
+<dt class="field-even">type ordinal_parameters</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+<dt class="field-odd">param nominal_parameters</dt>
+<dd class="field-odd"><p>list containing the name of all the nominal parameters taken into account for the experiment</p>
+</dd>
+<dt class="field-even">type nominal_parameters</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+<dt class="field-odd">param protocol</dt>
+<dd class="field-odd"><p>a list of coefficients defining relative sizes of training, cv, and test sets
+Default: [0.6, 0.2, 0.2]</p>
+</dd>
+<dt class="field-even">type protocol</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+<dt class="field-odd">param n_trees</dt>
+<dd class="field-odd"><p>The number of tree in the forest</p>
+</dd>
+<dt class="field-even">type n_trees</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+<dt class="field-odd">param criterion</dt>
+<dd class="field-odd"><p>The function to measure the quality of a split.</p>
+</dd>
+<dt class="field-even">type criterion</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">param seed</dt>
+<dd class="field-odd"><p>Use to initialize the random_state of DecisionTreeRegressor which controls the randomness of the estimator.
+Important to ensure reproducibility</p>
+</dd>
+<dt class="field-even">type seed</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+<dt class="field-odd">param max_tree_depth_rf</dt>
+<dd class="field-odd"><p>The maximum depth of the tree in the random forest algorithm. If None, then nodes are expanded until all
+leaves are pure or until all leaves contain less than min_samples_split samples.</p>
+</dd>
+<dt class="field-even">type max_tree_depth_rf</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+<dt class="field-odd">param max_tree_depth_dt</dt>
+<dd class="field-odd"><p>The maximum depth of the tree in the random forest algorithm. If None, then nodes are expanded until all
+leaves are pure or until all leaves contain less than min_samples_split samples.</p>
+</dd>
+<dt class="field-even">type max_tree_depth_dt</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+<dt class="field-odd">param save_fig</dt>
+<dd class="field-odd"><p>Indicate the path where to save the figure with the results</p>
+</dd>
+<dt class="field-even">type save_fig</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">returns</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r2_train</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Contains the R2 score computed on the training set for both Decison Tree and Random Forest algorithm</p></li>
+<li><p><strong>r2_cv</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Contains the R2 score computed on the cv set for both Decison Tree and Random Forest algorithm</p></li>
+<li><p><strong>r2_test</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Contains the R2 score computed on the test set for both Decison Tree and Random Forest algorithm</p></li>
+</ul>
+</dd>
+</dl>
 </div>
 </div>
 
