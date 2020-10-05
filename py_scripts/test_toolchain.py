@@ -192,15 +192,15 @@ def test_run_toolchain():
     max_tree_depth_rf = 10
     n_trees = 50
     criterion = "mse"
-    rf_seed = 10  # Used to fix the random_state of RF and decision tree regressors to ensure reproducibility
 
     # Decision trees details:
     max_tree_depth_dt = 100
 
     save_fig = None
+    seed = 42  # Used to fix the random_state of RF and decision tree regressors to ensure reproducibility
 
     r2_train, r2_cv, r2_test = run_toolchain(db_path, continuous_parameters, discrete_parameters, ordinal_parameters,
-                                             nominal_parameters, protocol, n_trees, criterion, rf_seed,
+                                             nominal_parameters, protocol, n_trees, criterion, seed,
                                              max_tree_depth_rf, max_tree_depth_dt, save_fig)
 
     np.testing.assert_almost_equal(r2_train, [0.9841, 0.9999], decimal=4)
