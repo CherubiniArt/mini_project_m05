@@ -19,4 +19,5 @@ command:
 Here are the plotting of the results of the executions above:
 -------------------------------------------------------------
 .. image:: ../results/all_params_results.png
+
 .. image:: ../results/relevant_params_results.png
