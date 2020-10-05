@@ -4,12 +4,12 @@ import random
 
 
 class HousePricesDatabase():
+    """Read the data from a csv file, clean the data (cf NaN value), split the dataset into training, cv and testing sets
 
-    def __init__(self, database_path, continuous_parameters, discrete_parameters, ordinal_parameters,
-                 nominal_parameters, protocol=[0.6, 0.2, 0.2]):
-        """
-        Attributes
-        -----------
+
+    Parameters
+    ===========
+
         database_path: str
             complete path to the database file
 
@@ -28,7 +28,26 @@ class HousePricesDatabase():
         protocol: list of float
             a list of coefficients defining relative sizes of training, cv, and test sets
             Default: [0.6, 0.2, 0.2]
-        """
+
+    Returns
+    =======
+        train_set: tuple of 3 elements
+            1. 2D numpy.array of size N_SAMPLES x N_CONT_PARAMS where N_CONT_PARAMS is the number of
+            discrete/continuous parameters and N_SAMPLES is the number of samples used in the training set
+            2. 2D numpy.array of size N_SAMPLES x N_CAT_PARAMS where N_CAT_PARAMS is the number of nominal/ordinal
+            parameters and N_SAMPLES is the number of samples used in the training set
+            3. 1D numpy.array of size N_SAMPLES containing the target values used for training
+
+        cv_set: tuple of 2 elements
+            Similar to train_set but this time N_SAMPLES is the number of samples in the cv set
+
+        test_set: tuple of 2 elements
+            Similar to train_set but this time N_SAMPLES is the number of samples in the test set
+
+    """
+
+    def __init__(self, database_path, continuous_parameters, discrete_parameters, ordinal_parameters,
+                 nominal_parameters, protocol=[0.6, 0.2, 0.2]):
 
         self.database_path = database_path
         self.continuous_parameters = continuous_parameters
@@ -48,26 +67,6 @@ class HousePricesDatabase():
         pd.options.mode.chained_assignment = None
 
     def __call__(self):
-        """
-        Read the data from a csv fil
-        Clean the data (cf NaN value)
-        Split the dataset into training, cv and testing sets
-
-        Returns
-        -----------------------
-        train_set: tuple of 3 elements
-            1. 2D numpy.array of size N_SAMPLES x N_CONT_PARAMS where N_CONT_PARAMS is the number of discrete/continuous
-                parameters and N_SAMPLES is the number of samples used in the training set
-            2. 2D numpy.array of size N_SAMPLES x N_CAT_PARAMS where N_CAT_PARAMS is the number of nominal/ordinal
-                parameters and N_SAMPLES is the number of samples used in the training set
-            3. 1D numpy.array of size N_SAMPLES containing the target values used for training
-
-        cv_set: tuple of 2 elements
-            Similar to train_set but this time N_SAMPLES is the number of samples in the cv set
-
-        test_set: tuple of 2 elements
-            Similar to train_set but this time N_SAMPLES is the number of samples in the test set
-        """
         try:
             dataset = pd.read_csv(self.database_path)
         except:

@@ -15,5 +15,10 @@ install:
   - conda activate project
   
 script:
+  # Run phase of our CI pipeline
   - nosetests -sv --with-coverage --cover-package=. ./py_scripts/test_toolchain.py
+  - sphinx-build -b doctest doc sphinx
+  # Build docs
+  - spinx-build doc sphinx
+  - touch sphinx/.nojekyll
   - coveralls
