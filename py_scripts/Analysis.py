@@ -4,6 +4,55 @@ import numpy as np
 
 
 class Analysis():
+    """
+    Used to compute and plot the performance of the experiment
+
+
+    Parameters
+    ===========
+
+        y_pred_train: list
+            The first element of the list is an array containing the predicted values for each input samples of the
+            training set computed with the RandomForestRegressor, while the second element is the predicted values
+            computed with DecisionTreeRegressor.
+
+        y_pred_cv: list
+            The first element of the list is an array containing the predicted values for each input samples of the
+            cv set computed with the RandomForestRegressor, while the second element is the predicted values
+            computed with DecisionTreeRegressor.
+
+        y_pred_test: list
+            The first element of the list is an array containing the predicted values for each input samples of the
+            testing set computed with the RandomForestRegressor, while the second element is the predicted values
+            computed with DecisionTreeRegressor.
+
+        target: :py:class:`tuple` of 3 elements
+            Each element (1D numpy.array) corresponds to the target values for training, cv and testing set.
+
+        mean_target: float
+            Mean value used to do the z-normalization of the target values
+
+        std_target: float
+            Standard deviation value used to do the z-normalization of the target values
+
+        algorithm: ["RF", "Decision Tree"]
+            Contains the name of the algorithms tested in the experiments.
+
+        save_fig: str
+            Indicate the path where to save the figure with the results
+
+    Returns
+    =======
+
+        r2_train: :py:class:`list` of :py:class:`float`
+            Contains the R2 score computed on the training set for both Decison Tree and Random Forest algorithm
+
+        r2_cv: :py:class:`list` of :py:class:`str`
+            Contains the R2 score computed on the cv set for both Decison Tree and Random Forest algorithm
+
+        r2_test: :py:class:`list` of :py:class:`str`
+            Contains the R2 score computed on the test set for both Decison Tree and Random Forest algorithm
+    """
 
     def __init__(self, y_pred_train, y_pred_cv, y_pred_test, target, mean_target, std_target, algorithm, save_fig):
         self.y_pred_train = y_pred_train
@@ -22,6 +71,7 @@ class Analysis():
         self.save_fig = save_fig
 
     def autolabel(self, ax, rects):
+        # Indicate the score of each bar in the plot bar
         for rect in rects:
             h = rect.get_height()
             ax.text(rect.get_x() + rect.get_width() / 2., 1.0 * h, '%f' % h,

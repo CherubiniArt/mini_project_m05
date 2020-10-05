@@ -8,6 +8,65 @@ from py_scripts.utils import regressor_test
 
 def run_toolchain(db_path, continuous_parameters, discrete_parameters, ordinal_parameters, nominal_parameters, protocol,
                   n_trees, criterion, seed, max_tree_depth_rf, max_tree_depth_dt, save_fig):
+    """
+    Function called in each user configuration file. It is the function which manage all the blocks and call them in a
+    specific order.
+
+
+    Parameters
+    ===========
+        db_path: str
+            Path to the database csv file
+
+        continuous_parameters: :py:class:`list` of :py:class:`str`
+            list containing the name of all the continuous parameters taken into account for this experiment
+
+        discrete_parameters: :py:class:`list` of :py:class:`str`
+            list containing the name of all the discrete parameters taken into account for this experiment
+
+        ordinal_parameters: :py:class:`list` of :py:class:`str`
+            list containing the name of all the ordinal parameters taken into account for the experiment
+
+        nominal_parameters: :py:class:`list` of :py:class:`str`
+            list containing the name of all the nominal parameters taken into account for the experiment
+
+        protocol: :py:class:`list` of :py:class:`float`
+            a list of coefficients defining relative sizes of training, cv, and test sets
+            Default: [0.6, 0.2, 0.2]
+
+        n_trees: int
+            The number of tree in the forest
+
+        criterion: str
+            The function to measure the quality of a split.
+
+        seed: int
+            Use to initialize the random_state of DecisionTreeRegressor which controls the randomness of the estimator.
+            Important to ensure reproducibility
+
+        max_tree_depth_rf: int
+            The maximum depth of the tree in the random forest algorithm. If None, then nodes are expanded until all
+            leaves are pure or until all leaves contain less than min_samples_split samples.
+
+        max_tree_depth_dt: int
+            The maximum depth of the tree in the random forest algorithm. If None, then nodes are expanded until all
+            leaves are pure or until all leaves contain less than min_samples_split samples.
+
+        save_fig: str
+            Indicate the path where to save the figure with the results
+
+    Returns
+    =======
+
+        r2_train: :py:class:`list` of :py:class:`float`
+            Contains the R2 score computed on the training set for both Decison Tree and Random Forest algorithm
+
+        r2_cv: :py:class:`list` of :py:class:`str`
+            Contains the R2 score computed on the cv set for both Decison Tree and Random Forest algorithm
+
+        r2_test: :py:class:`list` of :py:class:`str`
+            Contains the R2 score computed on the test set for both Decison Tree and Random Forest algorithm
+    """
 
     print("1. Load Database")
     house_price_db = HousePricesDatabase(db_path, continuous_parameters, discrete_parameters, ordinal_parameters,
