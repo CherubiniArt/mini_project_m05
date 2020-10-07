@@ -72,11 +72,12 @@ class HousePricesDatabase():
 
     def __call__(self):
         datafile = pkg_resources.resource_filename(__name__, self.database_path)
+        print(datafile)
 
         try:
             dataset = pd.read_csv(datafile)
-        except:
-            raise NameError("The path to the database doesn't exist")
+        except Exception as er:
+            print(er)
 
         # Split the dataset into two parts: one containing continuous/discrete params and one containing categorical
         # params
