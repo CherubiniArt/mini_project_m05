@@ -35,11 +35,14 @@ class HousePricesDatabase():
     Returns
     =======
         train_set: :py:class:`tuple` of 3 elements
-            - 2D numpy.array of size ``N_SAMPLES`` x ``N_CONT_PARAMS` where ``N_CONT_PARAMS`` is the number of
-            discrete/continuous parameters and N_SAMPLES is the number of samples used in the training set
-            - 2D numpy.array of size ``N_SAMPLES`` x ``N_CAT_PARAMS`` where ``N_CAT_PARAMS`` is the number of
+
+            2D numpy.array of size ``N_SAMPLES`` x ``N_CONT_PARAMS` where ``N_CONT_PARAMS`` is the number of
+            discrete/continuous parameters and ``N_SAMPLES`` is the number of samples used in the training set
+
+            2D numpy.array of size ``N_SAMPLES`` x ``N_CAT_PARAMS`` where ``N_CAT_PARAMS`` is the number of
             nominal/ordinal parameters and ``N_SAMPLES`` is the number of samples used in the training set
-            - 1D numpy.array of size ``N_SAMPLES`` containing the target values used for training
+
+            1D numpy.array of size ``N_SAMPLES`` containing the target values used for training
 
         cv_set: :py:class:`tuple` of 2 elements
             Similar to train_set but this time ``N_SAMPLES`` is the number of samples in the cv set

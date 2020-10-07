@@ -12,24 +12,27 @@ class DataPreprocessing():
     ===========
 
         train_set: :py:class:`tuple` of 3 elements
-            - 2D numpy.array of size ``N_SAMPLES`` x ``N_CONT_PARAMS`` where ``N_CONT_PARAMS`` is the number of
+
+            2D numpy.array of size ``N_SAMPLES`` x ``N_CONT_PARAMS`` where ``N_CONT_PARAMS`` is the number of
             discrete/continuous parameters and ``N_SAMPLES`` is the number of samples used in the training set
-            - 2D numpy.array of size ``N_SAMPLES`` x ``N_CAT_PARAMS`` where ``N_CAT_PARAMS`` is the number of
+
+            2D numpy.array of size ``N_SAMPLES`` x ``N_CAT_PARAMS`` where ``N_CAT_PARAMS`` is the number of
             nominal/ordinal parameters and ``N_SAMPLES`` is the number of samples used in the training set
-            - 1D numpy.array of size ``N_SAMPLES`` containing the target values used for training
+
+            1D numpy.array of size ``N_SAMPLES`` containing the target values used for training
 
         cv_set: :py:class:`tuple` of 3 elements
-            Similar to train_set but this time N_SAMPLES is the number of samples in the cv set
+            Similar to train_set but this time ``N_SAMPLES`` is the number of samples in the cv set
 
         test_set: :py:class:`tuple` of 3 elements
-            Similar to train_set but this time N_SAMPLES is the number of samples in the cv set
+            Similar to train_set but this time ``N_SAMPLES`` is the number of samples in the cv set
 
     Returns
     =======
         X: :py:class:`tuple` of 3 elements
             There is one element for each train, cv and test set. Each element corresponds to a 2D numpy.array of
-            size N_SAMPLES x N_PARAMETERS where N_SAMPLES changes in function of the set but N_PARAMETERS is always
-            the same N_PARAMETERS = N_CONT_PARAMETERS + N_CAT_PARAMETERS (after one-hot-encoding)
+            size ``N_SAMPLES`` x ``N_PARAMETERS`` where ``N_SAMPLES`` changes in function of the set but ``N_PARAMETERS``
+            is always the same ``N_PARAMETERS`` = ``N_CONT_PARAMETERS`` + ``N_CAT_PARAMETERS`` (after one-hot-encoding)
 
         y: :py:class:`tuple` of 3 elements
             Each element (1D numpy.array) corresponds to the target values for training, cv and testing set.
