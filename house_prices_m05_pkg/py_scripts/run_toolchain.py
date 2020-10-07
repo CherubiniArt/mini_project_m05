@@ -1,9 +1,9 @@
-#from py_scripts.HousePricesDatabase import HousePricesDatabase
-#from py_scripts.DataPreprocessing import DataPreprocessing
-#from py_scripts.RFAlgorithm import RandomForestTraining
-#from py_scripts.DecisionAlgorithm import DecisionTreeRegressionTraining
-#from py_scripts.Analysis import Analysis
-#from py_scripts.utils import regressor_test
+from .HousePricesDatabase import HousePricesDatabase
+from .DataPreprocessing import DataPreprocessing
+from .RFAlgorithm import RandomForestTraining
+from .DecisionAlgorithm import DecisionTreeRegressionTraining
+from .Analysis import Analysis
+from .utils import regressor_test
 
 
 def run_toolchain(db_path, continuous_parameters, discrete_parameters, ordinal_parameters, nominal_parameters, protocol,
