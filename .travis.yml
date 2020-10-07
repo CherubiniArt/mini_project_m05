@@ -16,7 +16,7 @@ install:
   
 script:
   # Run phase of our CI pipeline
-  - nosetests -sv --with-coverage --cover-package=. ./py_scripts/test_toolchain.py
+  - nosetests -sv --with-coverage --cover-package=. ./house_prices_m05_pkg/py_scripts/test_toolchain.py
   - sphinx-build -b doctest doc sphinx
   # Build docs
   - sphinx-build doc sphinx
