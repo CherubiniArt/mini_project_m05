@@ -194,14 +194,11 @@ Default: [0.6, 0.2, 0.2]</p></li>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul>
-<li><p><strong>train_set</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of 3 elements) –</p>
-<ul class="simple">
-<li><p>2D numpy.array of size <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> x <code class="docutils literal notranslate"><span class="pre">N_CONT_PARAMS`</span> <span class="pre">where</span> <span class="pre">``N_CONT_PARAMS</span></code> is the number of</p></li>
-</ul>
-<p>discrete/continuous parameters and N_SAMPLES is the number of samples used in the training set
-- 2D numpy.array of size <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> x <code class="docutils literal notranslate"><span class="pre">N_CAT_PARAMS</span></code> where <code class="docutils literal notranslate"><span class="pre">N_CAT_PARAMS</span></code> is the number of
-nominal/ordinal parameters and <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> is the number of samples used in the training set
-- 1D numpy.array of size <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> containing the target values used for training</p>
+<li><p><strong>train_set</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of 3 elements) – 2D numpy.array of size <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> x <code class="docutils literal notranslate"><span class="pre">N_CONT_PARAMS`</span> <span class="pre">where</span> <span class="pre">``N_CONT_PARAMS</span></code> is the number of
+discrete/continuous parameters and <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> is the number of samples used in the training set</p>
+<p>2D numpy.array of size <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> x <code class="docutils literal notranslate"><span class="pre">N_CAT_PARAMS</span></code> where <code class="docutils literal notranslate"><span class="pre">N_CAT_PARAMS</span></code> is the number of
+nominal/ordinal parameters and <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> is the number of samples used in the training set</p>
+<p>1D numpy.array of size <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> containing the target values used for training</p>
 </li>
 <li><p><strong>cv_set</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of 2 elements) – Similar to train_set but this time <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> is the number of samples in the cv set</p></li>
 <li><p><strong>test_set</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of 2 elements) – Similar to train_set but this time <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> is the number of samples in the test set</p></li>
@@ -225,23 +222,21 @@ nominal/ordinal parameters and <code class="docutils literal notranslate"><span 
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>train_set</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of 3 elements) – <ul>
-<li><p>2D numpy.array of size <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> x <code class="docutils literal notranslate"><span class="pre">N_CONT_PARAMS</span></code> where <code class="docutils literal notranslate"><span class="pre">N_CONT_PARAMS</span></code> is the number of</p></li>
-</ul>
-<p>discrete/continuous parameters and <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> is the number of samples used in the training set
-- 2D numpy.array of size <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> x <code class="docutils literal notranslate"><span class="pre">N_CAT_PARAMS</span></code> where <code class="docutils literal notranslate"><span class="pre">N_CAT_PARAMS</span></code> is the number of
-nominal/ordinal parameters and <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> is the number of samples used in the training set
-- 1D numpy.array of size <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> containing the target values used for training</p>
+<li><p><strong>train_set</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of 3 elements) – <p>2D numpy.array of size <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> x <code class="docutils literal notranslate"><span class="pre">N_CONT_PARAMS</span></code> where <code class="docutils literal notranslate"><span class="pre">N_CONT_PARAMS</span></code> is the number of
+discrete/continuous parameters and <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> is the number of samples used in the training set</p>
+<p>2D numpy.array of size <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> x <code class="docutils literal notranslate"><span class="pre">N_CAT_PARAMS</span></code> where <code class="docutils literal notranslate"><span class="pre">N_CAT_PARAMS</span></code> is the number of
+nominal/ordinal parameters and <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> is the number of samples used in the training set</p>
+<p>1D numpy.array of size <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> containing the target values used for training</p>
 </p></li>
-<li><p><strong>cv_set</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of 3 elements) – Similar to train_set but this time N_SAMPLES is the number of samples in the cv set</p></li>
-<li><p><strong>test_set</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of 3 elements) – Similar to train_set but this time N_SAMPLES is the number of samples in the cv set</p></li>
+<li><p><strong>cv_set</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of 3 elements) – Similar to train_set but this time <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> is the number of samples in the cv set</p></li>
+<li><p><strong>test_set</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of 3 elements) – Similar to train_set but this time <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> is the number of samples in the cv set</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>X</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of 3 elements) – There is one element for each train, cv and test set. Each element corresponds to a 2D numpy.array of
-size N_SAMPLES x N_PARAMETERS where N_SAMPLES changes in function of the set but N_PARAMETERS is always
-the same N_PARAMETERS = N_CONT_PARAMETERS + N_CAT_PARAMETERS (after one-hot-encoding)</p></li>
+size <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> x <code class="docutils literal notranslate"><span class="pre">N_PARAMETERS</span></code> where <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</span></code> changes in function of the set but <code class="docutils literal notranslate"><span class="pre">N_PARAMETERS</span></code>
+is always the same <code class="docutils literal notranslate"><span class="pre">N_PARAMETERS</span></code> = <code class="docutils literal notranslate"><span class="pre">N_CONT_PARAMETERS</span></code> + <code class="docutils literal notranslate"><span class="pre">N_CAT_PARAMETERS</span></code> (after one-hot-encoding)</p></li>
 <li><p><strong>y</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of 3 elements) – Each element (1D numpy.array) corresponds to the target values for training, cv and testing set.</p></li>
 <li><p><strong>mean_sale_price</strong> (<em>float</em>) – Mean value used to do the z-normalization of the target values</p></li>
 <li><p><strong>std_sale_price</strong> (<em>float</em>) – Standard deviation value used to do the z-normalization of the target values</p></li>
