@@ -21,6 +21,7 @@ Documentation
    guide
    troubleshooting
    api
+   license
 
 
 Indices and tables
