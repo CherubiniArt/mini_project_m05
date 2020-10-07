@@ -1,17 +1,19 @@
-from .HousePricesDatabase import HousePricesDatabase
-from .DataPreprocessing import DataPreprocessing
-from .Analysis import Analysis
-from .run_toolchain import run_toolchain
-from . import utils
+from .py_scripts.HousePricesDatabase import HousePricesDatabase
+from .py_scripts.DataPreprocessing import DataPreprocessing
+from .py_scripts.Analysis import Analysis
+from .py_scripts.run_toolchain import run_toolchain
+from .py_scripts import utils
 
 import nose.tools
 import numpy as np
+import pkg_resources
 
 
 def test_HousePricesDatabase():
     """Test the limit case of the class HousePricesDatabase when all the parameters are given as input"""
 
-    db_path = "./house-prices/house-prices.csv"
+    db_path = "/house-prices/house-prices.csv"
+    db_path = pkg_resources.resource_filename(__name__, db_path)
 
     # Nominal parameters:
     nominal = ["MS SubClass", "MS Zoning", "Street", "Alley", "Land Contour", "Lot Config", "Neighborhood",
@@ -76,7 +78,8 @@ def test_HousePricesDatabase():
 def test_DataPreprocessing():
     """Test the limit case of the class DataPreprocessing when all the parameters are given as input"""
 
-    db_path = "./house-prices/house-prices.csv"
+    db_path = "/house-prices/house-prices.csv"
+    db_path = pkg_resources.resource_filename(__name__, db_path)
 
     # Nominal parameters:
     nominal = ["MS SubClass", "MS Zoning", "Street", "Alley", "Land Contour", "Lot Config", "Neighborhood",
@@ -183,7 +186,8 @@ def test_run_toolchain():
                           "Garage Type", "Misc Feature", "Sale Type", "Sale Condition"]
 
     # Path to the db used for the regression task
-    db_path = "./house-prices/house-prices.csv"
+    db_path = "/house-prices/house-prices.csv"
+    db_path = pkg_resources.resource_filename(__name__, db_path)
 
     # Protocol used to split the dataset into train/cv/test
     protocol = [0.8, 0.1, 0.1]

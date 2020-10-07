@@ -1,4 +1,5 @@
 from .py_scripts.run_toolchain import run_toolchain
+import pkg_resources
 
 # Only relevant params selected (see details on relevant_params_selection.py)
 continuous_parameters = ["Gr Liv Area", "Garage Area", "Total Bsmt SF", "1st Flr SF", "Mas Vnr Area"]
@@ -7,7 +8,8 @@ ordinal_parameters = []
 nominal_parameters = []
 
 # Path to the db used for the regression task
-db_path = "./house-prices/house-prices.csv"
+db_path = "/house-prices/house-prices.csv"
+db_path = pkg_resources.resource_filename(__name__, db_path)
 
 # Protocol used to split the dataset into train/cv/test
 protocol = [0.8, 0.1, 0.1]

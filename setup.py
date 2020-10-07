@@ -11,7 +11,7 @@ def load_requirements(f):
 
 setup(
     name="house_prices_m05_pkg",
-    version="1.0.0",
+    version="1.0.1",
     description="house prices prediction tool",
     url="https://github.com/CherubiniArt/mini_project_m05",
     license="BSD",
