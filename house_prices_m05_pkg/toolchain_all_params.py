@@ -22,7 +22,7 @@ def main():
 
     # Path to the db used for the regression task
 
-    db_path = "house-prices.csv"
+    db_path = "./house_prices_m05_pkg/house-prices/house-prices.csv"
 
     # Protocol used to split the dataset into train/cv/test
     protocol = [0.8, 0.1, 0.1]
