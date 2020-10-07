@@ -3,7 +3,7 @@ from py_scripts.DataPreprocessing import DataPreprocessing
 from py_scripts.RFAlgorithm import RandomForestTraining
 from py_scripts.DecisionAlgorithm import DecisionTreeRegressionTraining
 from py_scripts.Analysis import Analysis
-from py_scripts.utils import regressor_test
+#from py_scripts.utils import regressor_test
 
 
 def run_toolchain(db_path, continuous_parameters, discrete_parameters, ordinal_parameters, nominal_parameters, protocol,
