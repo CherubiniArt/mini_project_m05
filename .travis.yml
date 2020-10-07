@@ -2,21 +2,13 @@ language: python
 python:
   - "3.8"
 install:
-  # Install phase of our CI pipeline
-  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
-  - bash miniconda.sh -b -p $HOME/miniconda
-  - source "$HOME/miniconda/etc/profile.d/conda.sh"
-  - hash -r
-  - conda config --set always_yes yes --set changeps1 no
-  - conda update -q conda
-  - conda info -a
-
-  - conda create -q -n project python=$TRAVIS_PYTHON_VERSION numpy scipy nose coverage coveralls sphinx sphinx_rtd_theme pandas matplotlib scikit-learn
-  - conda activate project
+  - pip install .
+  - pip install -r build-requirements.txt
   
 script:
+  - run-house-prices-pred  #test if the cmdline app runs at least
   # Run phase of our CI pipeline
-  - nosetests -sv --with-coverage --cover-package=. ./house_prices_m05_pkg/py_scripts/test_toolchain.py
+  - nosetests -sv --with-coverage --cover-package=house_prices_m05_pkg house_prices_m05_pkg
   - sphinx-build -b doctest doc sphinx
   # Build docs
   - sphinx-build doc sphinx

@@ -1,0 +1,2 @@
+include LICENSE README.rst buildout.cfg house_prices_m05_pkg/house-prices/house-prices.csv requirements.txt
+recursive-include doc conf.py *.rst *.png
