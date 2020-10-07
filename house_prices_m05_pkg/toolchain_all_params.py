@@ -1,4 +1,5 @@
 from .py_scripts.run_toolchain import run_toolchain
+import pkg_resources
 
 
 def main():
@@ -21,8 +22,8 @@ def main():
                           "Garage Type", "Misc Feature", "Sale Type", "Sale Condition"]
 
     # Path to the db used for the regression task
-
-    db_path = "./house_prices_m05_pkg/house-prices/house-prices.csv"
+    db_path = "/house-prices/house-prices.csv"
+    db_path = pkg_resources.resource_filename(__name__, db_path)
 
     # Protocol used to split the dataset into train/cv/test
     protocol = [0.8, 0.1, 0.1]
