@@ -33,29 +33,22 @@ Decision Tree Algorithm
    :members:
 
 
-Regressor Training
-------------------
-
-.. automodule:: house_prices_m05_pkg.py_scripts.utils.regressor_training
-   :members:
-
-
-Regressor Testing
-------------------
-
-.. automodule:: house_prices_m05_pkg.py_scripts.utils.regressor_test
-   :members:
-
-
 Analysis
 -----------------------
 
 .. autoclass:: house_prices_m05_pkg.py_scripts.Analysis.Analysis
+   :members:
+   
+
+Utils
+------------------
+
+.. automodule:: house_prices_m05_pkg.py_scripts.utils
    :members:
 
 
 Run Toolchain
 -------------
 
-.. automodule:: house_prices_m05_pkg.py_scripts.run_toolchain.run_toolchain
+.. automodule:: house_prices_m05_pkg.py_scripts.run_toolchain
    :members:
