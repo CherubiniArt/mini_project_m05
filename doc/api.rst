@@ -8,54 +8,54 @@
 Database
 --------
 
-.. autoclass:: py_scripts.HousePricesDatabase.HousePricesDatabase
+.. autoclass:: house_prices_m05_pkg.py_scripts.HousePricesDatabase.HousePricesDatabase
    :members:
 
 
 Preprocessing
 -------------
 
-.. autoclass:: py_scripts.DataPreprocessing.DataPreprocessing
+.. autoclass:: house_prices_m05_pkg.py_scripts.DataPreprocessing.DataPreprocessing
    :members:
 
 
 Random Forest Algorithm
 ------------------------
 
-.. autoclass:: py_scripts.RFAlgorithm.RandomForestTraining
+.. autoclass:: house_prices_m05_pkg.py_scripts.RFAlgorithm.RandomForestTraining
    :members:
 
 
 Decision Tree Algorithm
 -----------------------
 
-.. autoclass:: py_scripts.DecisionAlgorithm.DecisionTreeRegressionTraining
+.. autoclass:: house_prices_m05_pkg.py_scripts.DecisionAlgorithm.DecisionTreeRegressionTraining
    :members:
 
 
 Regressor Training
 ------------------
 
-.. automodule:: py_scripts.utils.regressor_training
+.. automodule:: house_prices_m05_pkg.py_scripts.utils.regressor_training
    :members:
 
 
 Regressor Testing
 ------------------
 
-.. automodule:: py_scripts.utils.regressor_test
+.. automodule:: house_prices_m05_pkg.py_scripts.utils.regressor_test
    :members:
 
 
 Analysis
 -----------------------
 
-.. autoclass:: py_scripts.Analysis.Analysis
+.. autoclass:: house_prices_m05_pkg.py_scripts.Analysis.Analysis
    :members:
 
 
 Run Toolchain
 -------------
 
-.. automodule:: py_scripts.run_toolchain.run_toolchain
+.. automodule:: house_prices_m05_pkg.py_scripts.run_toolchain.run_toolchain
    :members:
