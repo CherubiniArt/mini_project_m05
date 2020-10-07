@@ -36,7 +36,7 @@ def main():
     # Decision trees details:
     max_tree_depth_dt = 100
 
-    save_fig = '/results/all_params_results.png'
+    save_fig = '/img/all_params_results.png'
     save_fig = pkg_resources.resource_filename(__name__, save_fig)
     seed = 42  # Used to fix the random_state of RF and decision tree regressors to ensure reproducibility
 
