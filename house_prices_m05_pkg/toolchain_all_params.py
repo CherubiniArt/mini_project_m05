@@ -34,7 +34,7 @@ def main():
     criterion = "mse"
 
     # Decision trees details:
-    max_tree_depth_dt = 100
+    max_tree_depth_dt = 100    
 
     save_fig = '/img/all_params_results.png'
     save_fig = pkg_resources.resource_filename(__name__, save_fig)
