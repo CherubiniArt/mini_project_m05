@@ -99,9 +99,9 @@ class Analysis():
         self.autolabel(ax, rects2)
         self.autolabel(ax, rects3)
 
-        if self.save_fig is not None:
-            plt.savefig(self.save_fig)
-            plt.show()
+        #if self.save_fig is not None: DO NOT DELETE -- Uncomment to store the generate result
+            #plt.savefig(self.save_fig)
+            #plt.show()
 
     def __call__(self):
         r2_train = []
