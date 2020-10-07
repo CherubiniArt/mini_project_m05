@@ -12,12 +12,13 @@ command:
 
 .. code-block:: sh
 
-   (house_prices_env) $ python toolchain_all_params.py 
-   (house_prices_env) $ python toolchain_all_params.py
-   
+   $ run-house-prices-pred
+
    
 Here are the plotting of the results of the executions above:
 -------------------------------------------------------------
-.. image:: ../results/all_params_results.png
+Here are the performance of the two algorithms (Random Forest and Decision Tree)
+in the house prices prediction with all the parameters
 
-.. image:: ../results/relevant_params_results.png
+.. image:: ../house_prices_m05_pkg/img/all_params_results.png
+
