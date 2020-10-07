@@ -96,10 +96,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#preprocessing">Preprocessing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#random-forest-algorithm">Random Forest Algorithm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#decision-tree-algorithm">Decision Tree Algorithm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-house_prices_m05_pkg.py_scripts.utils.regressor_training">Regressor Training</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-house_prices_m05_pkg.py_scripts.utils.regressor_test">Regressor Testing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#analysis">Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-house_prices_m05_pkg.py_scripts.run_toolchain.run_toolchain">Run Toolchain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-house_prices_m05_pkg.py_scripts.utils">Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-house_prices_m05_pkg.py_scripts.run_toolchain">Run Toolchain</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">Licensing</a></li>
@@ -322,94 +321,6 @@ size <code class="docutils literal notranslate"><span class="pre">N_SAMPLES</spa
 </dd></dl>
 
 </div>
-<div class="section" id="module-house_prices_m05_pkg.py_scripts.utils.regressor_training">
-<span id="regressor-training"></span><h2>Regressor Training<a class="headerlink" href="#module-house_prices_m05_pkg.py_scripts.utils.regressor_training" title="Permalink to this headline">¶</a></h2>
-<p>Function used to fit/train a specific regressor and compute its performance on the training and cv set</p>
-<dl class="field-list simple">
-<dt class="field-odd">param regressor</dt>
-<dd class="field-odd"><p>Initialized regressor</p>
-</dd>
-<dt class="field-even">type regressor</dt>
-<dd class="field-even"><p>RandomForestRegressor or DecisionTreeRegressor</p>
-</dd>
-<dt class="field-odd">param x_train</dt>
-<dd class="field-odd"><p>Array containing the samples used for the training of the regressor. The size is
-<code class="docutils literal notranslate"><span class="pre">N_SAMPLES_TRAIN</span></code> x <code class="docutils literal notranslate"><span class="pre">N_PARAMETERS</span></code></p>
-</dd>
-<dt class="field-even">type x_train</dt>
-<dd class="field-even"><p>numpy.array</p>
-</dd>
-<dt class="field-odd">param x_cv</dt>
-<dd class="field-odd"><p>Array containing the samples used for the training of the regressor. The size is
-<code class="docutils literal notranslate"><span class="pre">N_SAMPLES_CV</span></code> x <code class="docutils literal notranslate"><span class="pre">N_PARAMETERS</span></code></p>
-</dd>
-<dt class="field-even">type x_cv</dt>
-<dd class="field-even"><p>numpy.array</p>
-</dd>
-<dt class="field-odd">param target_train</dt>
-<dd class="field-odd"><p>Each element of the array corresponds to the target values in the training set</p>
-</dd>
-<dt class="field-even">type target_train</dt>
-<dd class="field-even"><p>numpy.array</p>
-</dd>
-<dt class="field-odd">param target_cv</dt>
-<dd class="field-odd"><p>Each element of the array corresponds to the target values in the cv set</p>
-</dd>
-<dt class="field-even">type target_cv</dt>
-<dd class="field-even"><p>numpy.array</p>
-</dd>
-<dt class="field-odd">param criterion</dt>
-<dd class="field-odd"><p>The function to measure the quality of a split.</p>
-</dd>
-<dt class="field-even">type criterion</dt>
-<dd class="field-even"><p>str</p>
-</dd>
-<dt class="field-odd">returns</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>regressor</strong> (<em>self.DecisionTreeRegressor or self.RandomForestRegressor</em>) – Fitted estimator</p></li>
-<li><p><strong>y_pred_train</strong> (<em>numpy.array</em>) – Array containing the predicted value for each input samples of the training set</p></li>
-<li><p><strong>y_pred_cv</strong> (<em>numpy.array</em>) – Array containing the predicted value for each input samples of the cv set</p></li>
-</ul>
-</dd>
-</dl>
-</div>
-<div class="section" id="module-house_prices_m05_pkg.py_scripts.utils.regressor_test">
-<span id="regressor-testing"></span><h2>Regressor Testing<a class="headerlink" href="#module-house_prices_m05_pkg.py_scripts.utils.regressor_test" title="Permalink to this headline">¶</a></h2>
-<p>Function used to predict the performance on the testing set of a specific regressor</p>
-<dl class="field-list simple">
-<dt class="field-odd">param model</dt>
-<dd class="field-odd"><p>Fitted regressor</p>
-</dd>
-<dt class="field-even">type model</dt>
-<dd class="field-even"><p>RandomForestRegressor or DecisionTreeRegressor</p>
-</dd>
-<dt class="field-odd">param x_test</dt>
-<dd class="field-odd"><p>Array containing the samples used for the testing of the regressor. The size is
-<code class="docutils literal notranslate"><span class="pre">N_SAMPLES_TEST</span></code> x <code class="docutils literal notranslate"><span class="pre">N_PARAMETERS</span></code></p>
-</dd>
-<dt class="field-even">type x_test</dt>
-<dd class="field-even"><p>numpy.array</p>
-</dd>
-<dt class="field-odd">param target_test</dt>
-<dd class="field-odd"><p>Each element of the array corresponds to the target values in the testing set</p>
-</dd>
-<dt class="field-even">type target_test</dt>
-<dd class="field-even"><p>numpy.array</p>
-</dd>
-<dt class="field-odd">param criterion</dt>
-<dd class="field-odd"><p>The function to measure the quality of a split.</p>
-</dd>
-<dt class="field-even">type criterion</dt>
-<dd class="field-even"><p>str</p>
-</dd>
-<dt class="field-odd">returns</dt>
-<dd class="field-odd"><p><strong>y_pred_test</strong> – Array containing the predicted value for each input samples of the test set computed with model</p>
-</dd>
-<dt class="field-even">rtype</dt>
-<dd class="field-even"><p>numpy.array</p>
-</dd>
-</dl>
-</div>
 <div class="section" id="analysis">
 <h2>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
@@ -447,95 +358,99 @@ computed with DecisionTreeRegressor.</p></li>
 </dd></dl>
 
 </div>
-<div class="section" id="module-house_prices_m05_pkg.py_scripts.run_toolchain.run_toolchain">
-<span id="run-toolchain"></span><h2>Run Toolchain<a class="headerlink" href="#module-house_prices_m05_pkg.py_scripts.run_toolchain.run_toolchain" title="Permalink to this headline">¶</a></h2>
-<p>Function called in each user configuration file. It is the function which manage all the blocks and call them in a
+<div class="section" id="module-house_prices_m05_pkg.py_scripts.utils">
+<span id="utils"></span><h2>Utils<a class="headerlink" href="#module-house_prices_m05_pkg.py_scripts.utils" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="house_prices_m05_pkg.py_scripts.utils.regressor_training">
+<code class="sig-prename descclassname">house_prices_m05_pkg.py_scripts.utils.</code><code class="sig-name descname">regressor_training</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">regressor</span></em>, <em class="sig-param"><span class="n">x_train</span></em>, <em class="sig-param"><span class="n">x_cv</span></em>, <em class="sig-param"><span class="n">target_train</span></em>, <em class="sig-param"><span class="n">target_cv</span></em>, <em class="sig-param"><span class="n">criterion</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/house_prices_m05_pkg/py_scripts/utils.html#regressor_training"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#house_prices_m05_pkg.py_scripts.utils.regressor_training" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function used to fit/train a specific regressor and compute its performance on the training and cv set</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>regressor</strong> (<em>RandomForestRegressor</em><em> or </em><em>DecisionTreeRegressor</em>) – Initialized regressor</p></li>
+<li><p><strong>x_train</strong> (<em>numpy.array</em>) – Array containing the samples used for the training of the regressor. The size is
+<code class="docutils literal notranslate"><span class="pre">N_SAMPLES_TRAIN</span></code> x <code class="docutils literal notranslate"><span class="pre">N_PARAMETERS</span></code></p></li>
+<li><p><strong>x_cv</strong> (<em>numpy.array</em>) – Array containing the samples used for the training of the regressor. The size is
+<code class="docutils literal notranslate"><span class="pre">N_SAMPLES_CV</span></code> x <code class="docutils literal notranslate"><span class="pre">N_PARAMETERS</span></code></p></li>
+<li><p><strong>target_train</strong> (<em>numpy.array</em>) – Each element of the array corresponds to the target values in the training set</p></li>
+<li><p><strong>target_cv</strong> (<em>numpy.array</em>) – Each element of the array corresponds to the target values in the cv set</p></li>
+<li><p><strong>criterion</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The function to measure the quality of a split.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>regressor</strong> (<em>self.DecisionTreeRegressor or self.RandomForestRegressor</em>) – Fitted estimator</p></li>
+<li><p><strong>y_pred_train</strong> (<em>numpy.array</em>) – Array containing the predicted value for each input samples of the training set</p></li>
+<li><p><strong>y_pred_cv</strong> (<em>numpy.array</em>) – Array containing the predicted value for each input samples of the cv set</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="house_prices_m05_pkg.py_scripts.utils.regressor_test">
+<code class="sig-prename descclassname">house_prices_m05_pkg.py_scripts.utils.</code><code class="sig-name descname">regressor_test</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="n">x_test</span></em>, <em class="sig-param"><span class="n">target_test</span></em>, <em class="sig-param"><span class="n">criterion</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/house_prices_m05_pkg/py_scripts/utils.html#regressor_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#house_prices_m05_pkg.py_scripts.utils.regressor_test" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function used to predict the performance on the testing set of a specific regressor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<em>RandomForestRegressor</em><em> or </em><em>DecisionTreeRegressor</em>) – Fitted regressor</p></li>
+<li><p><strong>x_test</strong> (<em>numpy.array</em>) – Array containing the samples used for the testing of the regressor. The size is
+<code class="docutils literal notranslate"><span class="pre">N_SAMPLES_TEST</span></code> x <code class="docutils literal notranslate"><span class="pre">N_PARAMETERS</span></code></p></li>
+<li><p><strong>target_test</strong> (<em>numpy.array</em>) – Each element of the array corresponds to the target values in the testing set</p></li>
+<li><p><strong>criterion</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The function to measure the quality of a split.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>y_pred_test</strong> – Array containing the predicted value for each input samples of the test set computed with model</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-house_prices_m05_pkg.py_scripts.run_toolchain">
+<span id="run-toolchain"></span><h2>Run Toolchain<a class="headerlink" href="#module-house_prices_m05_pkg.py_scripts.run_toolchain" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="house_prices_m05_pkg.py_scripts.run_toolchain.run_toolchain">
+<code class="sig-prename descclassname">house_prices_m05_pkg.py_scripts.run_toolchain.</code><code class="sig-name descname">run_toolchain</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">db_path</span></em>, <em class="sig-param"><span class="n">continuous_parameters</span></em>, <em class="sig-param"><span class="n">discrete_parameters</span></em>, <em class="sig-param"><span class="n">ordinal_parameters</span></em>, <em class="sig-param"><span class="n">nominal_parameters</span></em>, <em class="sig-param"><span class="n">protocol</span></em>, <em class="sig-param"><span class="n">n_trees</span></em>, <em class="sig-param"><span class="n">criterion</span></em>, <em class="sig-param"><span class="n">seed</span></em>, <em class="sig-param"><span class="n">max_tree_depth_rf</span></em>, <em class="sig-param"><span class="n">max_tree_depth_dt</span></em>, <em class="sig-param"><span class="n">save_fig</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/house_prices_m05_pkg/py_scripts/run_toolchain.html#run_toolchain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#house_prices_m05_pkg.py_scripts.run_toolchain.run_toolchain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function called in each user configuration file. It is the function which manage all the blocks and call them in a
 specific order.</p>
 <dl class="field-list simple">
-<dt class="field-odd">param db_path</dt>
-<dd class="field-odd"><p>Path to the database csv file</p>
-</dd>
-<dt class="field-even">type db_path</dt>
-<dd class="field-even"><p>str</p>
-</dd>
-<dt class="field-odd">param continuous_parameters</dt>
-<dd class="field-odd"><p>list containing the name of all the continuous parameters taken into account for this experiment</p>
-</dd>
-<dt class="field-even">type continuous_parameters</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
-</dd>
-<dt class="field-odd">param discrete_parameters</dt>
-<dd class="field-odd"><p>list containing the name of all the discrete parameters taken into account for this experiment</p>
-</dd>
-<dt class="field-even">type discrete_parameters</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
-</dd>
-<dt class="field-odd">param ordinal_parameters</dt>
-<dd class="field-odd"><p>list containing the name of all the ordinal parameters taken into account for the experiment</p>
-</dd>
-<dt class="field-even">type ordinal_parameters</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
-</dd>
-<dt class="field-odd">param nominal_parameters</dt>
-<dd class="field-odd"><p>list containing the name of all the nominal parameters taken into account for the experiment</p>
-</dd>
-<dt class="field-even">type nominal_parameters</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
-</dd>
-<dt class="field-odd">param protocol</dt>
-<dd class="field-odd"><p>a list of coefficients defining relative sizes of training, cv, and test sets
-Default: [0.6, 0.2, 0.2]</p>
-</dd>
-<dt class="field-even">type protocol</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
-</dd>
-<dt class="field-odd">param n_trees</dt>
-<dd class="field-odd"><p>The number of tree in the forest</p>
-</dd>
-<dt class="field-even">type n_trees</dt>
-<dd class="field-even"><p>int</p>
-</dd>
-<dt class="field-odd">param criterion</dt>
-<dd class="field-odd"><p>The function to measure the quality of a split.</p>
-</dd>
-<dt class="field-even">type criterion</dt>
-<dd class="field-even"><p>str</p>
-</dd>
-<dt class="field-odd">param seed</dt>
-<dd class="field-odd"><p>Use to initialize the random_state of DecisionTreeRegressor which controls the randomness of the estimator.
-Important to ensure reproducibility</p>
-</dd>
-<dt class="field-even">type seed</dt>
-<dd class="field-even"><p>int</p>
-</dd>
-<dt class="field-odd">param max_tree_depth_rf</dt>
-<dd class="field-odd"><p>The maximum depth of the tree in the random forest algorithm. If None, then nodes are expanded until all
-leaves are pure or until all leaves contain less than min_samples_split samples.</p>
-</dd>
-<dt class="field-even">type max_tree_depth_rf</dt>
-<dd class="field-even"><p>int</p>
-</dd>
-<dt class="field-odd">param max_tree_depth_dt</dt>
-<dd class="field-odd"><p>The maximum depth of the tree in the random forest algorithm. If None, then nodes are expanded until all
-leaves are pure or until all leaves contain less than min_samples_split samples.</p>
-</dd>
-<dt class="field-even">type max_tree_depth_dt</dt>
-<dd class="field-even"><p>int</p>
-</dd>
-<dt class="field-odd">param save_fig</dt>
-<dd class="field-odd"><p>Indicate the path where to save the figure with the results</p>
-</dd>
-<dt class="field-even">type save_fig</dt>
-<dd class="field-even"><p>str</p>
-</dd>
-<dt class="field-odd">returns</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
+<li><p><strong>db_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Path to the database csv file</p></li>
+<li><p><strong>continuous_parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – list containing the name of all the continuous parameters taken into account for this experiment</p></li>
+<li><p><strong>discrete_parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – list containing the name of all the discrete parameters taken into account for this experiment</p></li>
+<li><p><strong>ordinal_parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – list containing the name of all the ordinal parameters taken into account for the experiment</p></li>
+<li><p><strong>nominal_parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – list containing the name of all the nominal parameters taken into account for the experiment</p></li>
+<li><p><strong>protocol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – a list of coefficients defining relative sizes of training, cv, and test sets
+Default: [0.6, 0.2, 0.2]</p></li>
+<li><p><strong>n_trees</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The number of tree in the forest</p></li>
+<li><p><strong>criterion</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The function to measure the quality of a split.</p></li>
+<li><p><strong>seed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Use to initialize the random_state of DecisionTreeRegressor which controls the randomness of the estimator.
+Important to ensure reproducibility</p></li>
+<li><p><strong>max_tree_depth_rf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The maximum depth of the tree in the random forest algorithm. If None, then nodes are expanded until all
+leaves are pure or until all leaves contain less than min_samples_split samples.</p></li>
+<li><p><strong>max_tree_depth_dt</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The maximum depth of the tree in the random forest algorithm. If None, then nodes are expanded until all
+leaves are pure or until all leaves contain less than min_samples_split samples.</p></li>
+<li><p><strong>save_fig</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Indicate the path where to save the figure with the results</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
 <li><p><strong>r2_train</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Contains the R2 score computed on the training set for both Decison Tree and Random Forest algorithm</p></li>
 <li><p><strong>r2_cv</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Contains the R2 score computed on the cv set for both Decison Tree and Random Forest algorithm</p></li>
 <li><p><strong>r2_test</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Contains the R2 score computed on the test set for both Decison Tree and Random Forest algorithm</p></li>
 </ul>
+</p>
 </dd>
 </dl>
+</dd></dl>
+
 </div>
 </div>
 

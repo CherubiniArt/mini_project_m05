@@ -1,0 +1,311 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>house_prices_m05_pkg.py_scripts.run_toolchain &mdash; house_prices_pred 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> house_prices_pred
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">Licensing</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">house_prices_pred</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>house_prices_m05_pkg.py_scripts.run_toolchain</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for house_prices_m05_pkg.py_scripts.run_toolchain</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">.HousePricesDatabase</span> <span class="kn">import</span> <span class="n">HousePricesDatabase</span>
+<span class="kn">from</span> <span class="nn">.DataPreprocessing</span> <span class="kn">import</span> <span class="n">DataPreprocessing</span>
+<span class="kn">from</span> <span class="nn">.RFAlgorithm</span> <span class="kn">import</span> <span class="n">RandomForestTraining</span>
+<span class="kn">from</span> <span class="nn">.DecisionAlgorithm</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressionTraining</span>
+<span class="kn">from</span> <span class="nn">.Analysis</span> <span class="kn">import</span> <span class="n">Analysis</span>
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">regressor_test</span>
+
+
+<div class="viewcode-block" id="run_toolchain"><a class="viewcode-back" href="../../../api.html#house_prices_m05_pkg.py_scripts.run_toolchain.run_toolchain">[docs]</a><span class="k">def</span> <span class="nf">run_toolchain</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="n">continuous_parameters</span><span class="p">,</span> <span class="n">discrete_parameters</span><span class="p">,</span> <span class="n">ordinal_parameters</span><span class="p">,</span> <span class="n">nominal_parameters</span><span class="p">,</span> <span class="n">protocol</span><span class="p">,</span>
+                  <span class="n">n_trees</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">seed</span><span class="p">,</span> <span class="n">max_tree_depth_rf</span><span class="p">,</span> <span class="n">max_tree_depth_dt</span><span class="p">,</span> <span class="n">save_fig</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function called in each user configuration file. It is the function which manage all the blocks and call them in a</span>
+<span class="sd">    specific order.</span>
+
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ===========</span>
+<span class="sd">        db_path: str</span>
+<span class="sd">            Path to the database csv file</span>
+
+<span class="sd">        continuous_parameters: :py:class:`list` of :py:class:`str`</span>
+<span class="sd">            list containing the name of all the continuous parameters taken into account for this experiment</span>
+
+<span class="sd">        discrete_parameters: :py:class:`list` of :py:class:`str`</span>
+<span class="sd">            list containing the name of all the discrete parameters taken into account for this experiment</span>
+
+<span class="sd">        ordinal_parameters: :py:class:`list` of :py:class:`str`</span>
+<span class="sd">            list containing the name of all the ordinal parameters taken into account for the experiment</span>
+
+<span class="sd">        nominal_parameters: :py:class:`list` of :py:class:`str`</span>
+<span class="sd">            list containing the name of all the nominal parameters taken into account for the experiment</span>
+
+<span class="sd">        protocol: :py:class:`list` of :py:class:`float`</span>
+<span class="sd">            a list of coefficients defining relative sizes of training, cv, and test sets</span>
+<span class="sd">            Default: [0.6, 0.2, 0.2]</span>
+
+<span class="sd">        n_trees: int</span>
+<span class="sd">            The number of tree in the forest</span>
+
+<span class="sd">        criterion: str</span>
+<span class="sd">            The function to measure the quality of a split.</span>
+
+<span class="sd">        seed: int</span>
+<span class="sd">            Use to initialize the random_state of DecisionTreeRegressor which controls the randomness of the estimator.</span>
+<span class="sd">            Important to ensure reproducibility</span>
+
+<span class="sd">        max_tree_depth_rf: int</span>
+<span class="sd">            The maximum depth of the tree in the random forest algorithm. If None, then nodes are expanded until all</span>
+<span class="sd">            leaves are pure or until all leaves contain less than min_samples_split samples.</span>
+
+<span class="sd">        max_tree_depth_dt: int</span>
+<span class="sd">            The maximum depth of the tree in the random forest algorithm. If None, then nodes are expanded until all</span>
+<span class="sd">            leaves are pure or until all leaves contain less than min_samples_split samples.</span>
+
+<span class="sd">        save_fig: str</span>
+<span class="sd">            Indicate the path where to save the figure with the results</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+
+<span class="sd">        r2_train: :py:class:`list` of :py:class:`float`</span>
+<span class="sd">            Contains the R2 score computed on the training set for both Decison Tree and Random Forest algorithm</span>
+
+<span class="sd">        r2_cv: :py:class:`list` of :py:class:`str`</span>
+<span class="sd">            Contains the R2 score computed on the cv set for both Decison Tree and Random Forest algorithm</span>
+
+<span class="sd">        r2_test: :py:class:`list` of :py:class:`str`</span>
+<span class="sd">            Contains the R2 score computed on the test set for both Decison Tree and Random Forest algorithm</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1. Load Database&quot;</span><span class="p">)</span>
+    <span class="n">house_price_db</span> <span class="o">=</span> <span class="n">HousePricesDatabase</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="n">continuous_parameters</span><span class="p">,</span> <span class="n">discrete_parameters</span><span class="p">,</span> <span class="n">ordinal_parameters</span><span class="p">,</span>
+                                         <span class="n">nominal_parameters</span><span class="p">,</span> <span class="n">protocol</span><span class="p">)</span>
+    <span class="n">train_set</span><span class="p">,</span> <span class="n">cv_set</span><span class="p">,</span> <span class="n">test_set</span> <span class="o">=</span> <span class="n">house_price_db</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2. Data Preprocessing&quot;</span><span class="p">)</span>
+    <span class="n">preprocessing</span> <span class="o">=</span> <span class="n">DataPreprocessing</span><span class="p">(</span><span class="n">train_set</span><span class="p">,</span> <span class="n">cv_set</span><span class="p">,</span> <span class="n">test_set</span><span class="p">)</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">mean_sale_price</span><span class="p">,</span> <span class="n">std_sale_price</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;3. Algorithm train&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-----&gt; RF&quot;</span><span class="p">)</span>
+    <span class="n">rf_train</span> <span class="o">=</span> <span class="n">RandomForestTraining</span><span class="p">(</span><span class="n">n_trees</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">seed</span><span class="p">,</span> <span class="n">max_tree_depth_rf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">rf_regressor</span><span class="p">,</span> <span class="n">rf_y_predict_train</span><span class="p">,</span> <span class="n">rf_y_predict_cv</span> <span class="o">=</span> <span class="n">rf_train</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-----&gt; Decision Tree&quot;</span><span class="p">)</span>
+    <span class="n">decision_train</span> <span class="o">=</span> <span class="n">DecisionTreeRegressionTraining</span><span class="p">(</span><span class="n">criterion</span><span class="p">,</span> <span class="n">seed</span><span class="p">,</span> <span class="n">max_tree_depth_dt</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">dt_regressor</span><span class="p">,</span> <span class="n">dt_y_predict_train</span><span class="p">,</span> <span class="n">dt_y_predict_cv</span> <span class="o">=</span> <span class="n">decision_train</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;5. Algorithm testing&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-----&gt; RF&quot;</span><span class="p">)</span>
+    <span class="n">rf_y_predict_test</span> <span class="o">=</span> <span class="n">regressor_test</span><span class="p">(</span><span class="n">rf_regressor</span><span class="p">,</span> <span class="n">X</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">criterion</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-----&gt; Decision Tree&quot;</span><span class="p">)</span>
+    <span class="n">dt_y_predict_test</span> <span class="o">=</span> <span class="n">regressor_test</span><span class="p">(</span><span class="n">dt_regressor</span><span class="p">,</span> <span class="n">X</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">criterion</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;6. Analysis&quot;</span><span class="p">)</span>
+    <span class="n">y_pred_train</span> <span class="o">=</span> <span class="p">[</span><span class="n">rf_y_predict_train</span><span class="p">,</span> <span class="n">dt_y_predict_train</span><span class="p">]</span>
+    <span class="n">y_pred_cv</span> <span class="o">=</span> <span class="p">[</span><span class="n">rf_y_predict_cv</span><span class="p">,</span> <span class="n">dt_y_predict_cv</span><span class="p">]</span>
+    <span class="n">y_pred_test</span> <span class="o">=</span> <span class="p">[</span><span class="n">rf_y_predict_test</span><span class="p">,</span> <span class="n">dt_y_predict_test</span><span class="p">]</span>
+    <span class="n">algorithm</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;RF&quot;</span><span class="p">,</span> <span class="s2">&quot;Decision Tree&quot;</span><span class="p">]</span>
+
+    <span class="n">score</span> <span class="o">=</span> <span class="n">Analysis</span><span class="p">(</span><span class="n">y_pred_train</span><span class="p">,</span> <span class="n">y_pred_cv</span><span class="p">,</span> <span class="n">y_pred_test</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">mean_sale_price</span><span class="p">,</span> <span class="n">std_sale_price</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="n">save_fig</span><span class="p">)</span>
+    <span class="n">r2_train</span><span class="p">,</span> <span class="n">r2_cv</span><span class="p">,</span> <span class="n">r2_test</span> <span class="o">=</span> <span class="n">score</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">r2_train</span><span class="p">,</span> <span class="n">r2_cv</span><span class="p">,</span> <span class="n">r2_test</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, &#39;Michelle Vanessa Meguep, Arthur Cherubini&#39;
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
