@@ -1,0 +1,328 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>house_prices_m05_pkg.py_scripts.Analysis &mdash; house_prices_pred 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> house_prices_pred
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">Python API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">house_prices_pred</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>house_prices_m05_pkg.py_scripts.Analysis</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for house_prices_m05_pkg.py_scripts.Analysis</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="Analysis"><a class="viewcode-back" href="../../../api.html#house_prices_m05_pkg.py_scripts.Analysis.Analysis">[docs]</a><span class="k">class</span> <span class="nc">Analysis</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Used to compute and plot the performance of the experiment</span>
+
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ===========</span>
+
+<span class="sd">        y_pred_train: list</span>
+<span class="sd">            The first element of the list is an array containing the predicted values for each input samples of the</span>
+<span class="sd">            training set computed with the RandomForestRegressor, while the second element is the predicted values</span>
+<span class="sd">            computed with DecisionTreeRegressor.</span>
+
+<span class="sd">        y_pred_cv: list</span>
+<span class="sd">            The first element of the list is an array containing the predicted values for each input samples of the</span>
+<span class="sd">            cv set computed with the RandomForestRegressor, while the second element is the predicted values</span>
+<span class="sd">            computed with DecisionTreeRegressor.</span>
+
+<span class="sd">        y_pred_test: list</span>
+<span class="sd">            The first element of the list is an array containing the predicted values for each input samples of the</span>
+<span class="sd">            testing set computed with the RandomForestRegressor, while the second element is the predicted values</span>
+<span class="sd">            computed with DecisionTreeRegressor.</span>
+
+<span class="sd">        target: :py:class:`tuple` of 3 elements</span>
+<span class="sd">            Each element (1D numpy.array) corresponds to the target values for training, cv and testing set.</span>
+
+<span class="sd">        mean_target: float</span>
+<span class="sd">            Mean value used to do the z-normalization of the target values</span>
+
+<span class="sd">        std_target: float</span>
+<span class="sd">            Standard deviation value used to do the z-normalization of the target values</span>
+
+<span class="sd">        algorithm: [&quot;RF&quot;, &quot;Decision Tree&quot;]</span>
+<span class="sd">            Contains the name of the algorithms tested in the experiments.</span>
+
+<span class="sd">        save_fig: str</span>
+<span class="sd">            Indicate the path where to save the figure with the results</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+
+<span class="sd">        r2_train: :py:class:`list` of :py:class:`float`</span>
+<span class="sd">            Contains the R2 score computed on the training set for both Decison Tree and Random Forest algorithm</span>
+
+<span class="sd">        r2_cv: :py:class:`list` of :py:class:`str`</span>
+<span class="sd">            Contains the R2 score computed on the cv set for both Decison Tree and Random Forest algorithm</span>
+
+<span class="sd">        r2_test: :py:class:`list` of :py:class:`str`</span>
+<span class="sd">            Contains the R2 score computed on the test set for both Decison Tree and Random Forest algorithm</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_pred_train</span><span class="p">,</span> <span class="n">y_pred_cv</span><span class="p">,</span> <span class="n">y_pred_test</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">mean_target</span><span class="p">,</span> <span class="n">std_target</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="n">save_fig</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y_pred_train</span> <span class="o">=</span> <span class="n">y_pred_train</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y_pred_cv</span> <span class="o">=</span> <span class="n">y_pred_cv</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y_pred_test</span> <span class="o">=</span> <span class="n">y_pred_test</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">y_train</span> <span class="o">=</span> <span class="n">target</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y_cv</span> <span class="o">=</span> <span class="n">target</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y_test</span> <span class="o">=</span> <span class="n">target</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">mean</span> <span class="o">=</span> <span class="n">mean_target</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">std</span> <span class="o">=</span> <span class="n">std_target</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">algorithm</span> <span class="o">=</span> <span class="n">algorithm</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">save_fig</span> <span class="o">=</span> <span class="n">save_fig</span>
+
+    <span class="k">def</span> <span class="nf">autolabel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">rects</span><span class="p">):</span>
+        <span class="c1"># Indicate the score of each bar in the plot bar</span>
+        <span class="k">for</span> <span class="n">rect</span> <span class="ow">in</span> <span class="n">rects</span><span class="p">:</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="n">rect</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">rect</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">rect</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="n">h</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">h</span><span class="p">,</span>
+                    <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">plot_multiple_bars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scores_train</span><span class="p">,</span> <span class="n">scores_cv</span><span class="p">,</span> <span class="n">scores_test</span><span class="p">):</span>
+        <span class="c1"># Number of compared algorithms</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">algorithm</span><span class="p">)</span>
+        <span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>  <span class="c1"># the x locations for the groups</span>
+        <span class="n">width</span> <span class="o">=</span> <span class="mf">0.27</span>  <span class="c1"># the width of the bars</span>
+
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+
+        <span class="n">rects1</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">ind</span><span class="p">,</span> <span class="n">scores_train</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+        <span class="n">rects2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">ind</span> <span class="o">+</span> <span class="n">width</span><span class="p">,</span> <span class="n">scores_cv</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+        <span class="n">rects3</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">ind</span> <span class="o">+</span> <span class="n">width</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">scores_test</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;R2 Scores&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">ind</span> <span class="o">+</span> <span class="n">width</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">algorithm</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="n">rects1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">rects2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">rects3</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="p">(</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;cv&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">autolabel</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">rects1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">autolabel</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">rects2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">autolabel</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">rects3</span><span class="p">)</span>
+
+        <span class="c1">#if self.save_fig is not None: DO NOT DELETE -- Uncomment to store the generate result</span>
+            <span class="c1">#plt.savefig(self.save_fig)</span>
+            <span class="c1">#plt.show()</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">r2_train</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">r2_cv</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">r2_test</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">alg</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">algorithm</span><span class="p">):</span>
+            <span class="n">r2_train</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r2_score</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y_train</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_pred_train</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+            <span class="n">r2_cv</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r2_score</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y_cv</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_pred_cv</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+            <span class="n">r2_test</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r2_score</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y_test</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_pred_test</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+
+            <span class="nb">print</span><span class="p">(</span><span class="n">alg</span><span class="o">+</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;r2 train =&quot;</span><span class="p">,</span> <span class="n">r2_train</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;r2 cv =&quot;</span><span class="p">,</span> <span class="n">r2_cv</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;r2 test =&quot;</span><span class="p">,</span> <span class="n">r2_test</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot_multiple_bars</span><span class="p">(</span><span class="n">r2_train</span><span class="p">,</span> <span class="n">r2_cv</span><span class="p">,</span> <span class="n">r2_test</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">r2_train</span><span class="p">,</span> <span class="n">r2_cv</span><span class="p">,</span> <span class="n">r2_test</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, &#39;Michelle Vanessa Meguep, Arthur Cherubini&#39;
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
