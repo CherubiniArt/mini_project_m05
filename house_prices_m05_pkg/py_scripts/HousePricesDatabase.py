@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import random
+import pkg_resources
 
 
 class HousePricesDatabase():
@@ -70,8 +71,10 @@ class HousePricesDatabase():
         pd.options.mode.chained_assignment = None
 
     def __call__(self):
+        datafile = pkg_resources.resource_filename(__name__, self.database_path)
+
         try:
-            dataset = pd.read_csv(self.database_path)
+            dataset = pd.read_csv(datafile)
         except:
             raise NameError("The path to the database doesn't exist")
 
