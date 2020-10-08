@@ -7,18 +7,37 @@
 ===========
 
 This guide explains how to use this package and obtain results published in our
-paper.  Results can be re-generated automatically by executing the following
-command:
+paper.
+
+Hypothese 1
+------------
+
+The results for the first hypothese can be re-generated automatically by
+executing the following command:
 
 .. code-block:: sh
 
-   $ run-house-prices-pred
+   $ run-house-prices-all-pred
 
-   
-Here are the plotting of the results of the executions above:
--------------------------------------------------------------
-Here are the performance of the two algorithms (Random Forest and Decision Tree)
-in the house prices prediction with all the parameters
+R2 performance on the training, cv and testing set for a RF algorithm and
+a Decision Tree algorithm when all the parameters are given at
+the input.
 
 .. image:: ../house_prices_m05_pkg/img/all_params_results.png
 
+
+Hypothese 2
+------------
+
+The results for the second hypothese can be re-generated automatically by
+executing the following command:
+
+.. code-block:: sh
+
+   $ run-house-prices-relevant-pred
+
+R2 performance on the training, cv and testing set for a RF algorithm and
+a Decision Tree algorithm when only the relevant parameters are given at
+the input.
+
+.. image:: ../house_prices_m05_pkg/img/relevant_params_results.png
