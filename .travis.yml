@@ -6,7 +6,8 @@ install:
   - pip install -r build-requirements.txt
   
 script:
-  - run-house-prices-pred  #test if the cmdline app runs at least
+  - run-house-prices-all-pred  #test if the cmdline app runs at least
+  - run-house-prices-relevant-pred
   # Run phase of our CI pipeline
   - nosetests -sv --with-coverage --cover-package=house_prices_m05_pkg house_prices_m05_pkg
   - sphinx-build -b doctest doc sphinx
