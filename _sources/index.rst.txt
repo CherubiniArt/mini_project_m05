@@ -17,6 +17,8 @@ Documentation
 
 .. toctree::
 
+   hypotheses
+   data
    installation
    guide
    troubleshooting
