@@ -11,3 +11,5 @@
 .. _matplotlib: https://matplotlib.org/
 .. _pandas: https://pandas.pydata.org/
 .. _sphinx: http://sphinx.pocoo.org
+.. _dataset: http://jse.amstat.org/v19n3/decock/DataDocumentation.txt
+.. _paper: https://www.tandfonline.com/doi/abs/10.1080/10691898.2011.11889627
