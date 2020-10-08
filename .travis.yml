@@ -27,8 +27,8 @@ deploy:
   - provider: pypi
     server: https://test.pypi.org/legacy/ # Remove to deployment on pypi.org
     username: "__token__"
-    password:
-      secure: AgENdGVzdC5weXBpLm9yZwIkYzFhMDg5M2MtMDUxYS00ZGFkLWE1OTMtOWRmY2UzOTJmMzI5AAJFeyJwZXJtaXNzaW9ucyI6IHsicHJvamVjdHMiOiBbImhvdXNlLXByaWNlcy1tMDUtcGtnIl19LCAidmVyc2lvbiI6IDF9AAAGIAGfUxgPls4GlHkdn7qR-kFgA24QDzE2_Y1ilpqPudf4
+    password: pypi-AgENdGVzdC5weXBpLm9yZwIkYzFhMDg5M2MtMDUxYS00ZGFkLWE1OTMtOWRmY2UzOTJmMzI5AAJFeyJwZXJtaXNzaW9ucyI6IHsicHJvamVjdHMiOiBbImhvdXNlLXByaWNlcy1tMDUtcGtnIl19LCAidmVyc2lvbiI6IDF9AAAGIAGfUxgPls4GlHkdn7qR-kFgA24QDzE2_Y1ilpqPudf4
+      #secure: pypi-AgENdGVzdC5weXBpLm9yZwIkYzFhMDg5M2MtMDUxYS00ZGFkLWE1OTMtOWRmY2UzOTJmMzI5AAJFeyJwZXJtaXNzaW9ucyI6IHsicHJvamVjdHMiOiBbImhvdXNlLXByaWNlcy1tMDUtcGtnIl19LCAidmVyc2lvbiI6IDF9AAAGIAGfUxgPls4GlHkdn7qR-kFgA24QDzE2_Y1ilpqPudf4
     on:
       tags: true
       condition: "$TRAVIS_PYTHON_VERSION = 3.8"
