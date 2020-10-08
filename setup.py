@@ -23,8 +23,7 @@ setup(
     include_package_data=True,
     install_requires=load_requirements("requirements.txt"),
     entry_points={"console_scripts": ["run-house-prices-all-pred = house_prices_m05_pkg.toolchain_all_params:main",
-                                      "run-house-prices-relevant-pred = house_prices_m05_pkg.toolchain_relevant_\
-                                      params:main"]},
+                                      "run-house-prices-relevant-pred = house_prices_m05_pkg.toolchain_relevant_params:main"]},
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
