@@ -41,3 +41,12 @@ a Decision Tree algorithm when only the relevant parameters are given at
 the input.
 
 .. image:: ../house_prices_m05_pkg/img/relevant_params_results.png
+
+
+Conclusion
+-----------
+
+From the results obtained above, one can conclude that **the two initial hypotheses
+are not rejected**. Indeed, the RF algorihtm gives good performance for both 
+the cases; when all the parameters are selected and when only the relevant 
+parameters are selected.
